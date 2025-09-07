@@ -1,0 +1,147 @@
+[gd_scene load_steps=17 format=3 uid="uid://cnrxwm0ehctws"]
+
+[ext_resource type="Script" uid="uid://bq4edt0fekpbu" path="res://card_manager.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://main.gd" id="1_5vw27"]
+[ext_resource type="Texture2D" uid="uid://bjihxbdnjy7km" path="res://fundo1.svg" id="2_kek77"]
+[ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://hand.gd" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cy8xx5j57cnat" path="res://scenes/card_slot.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://dwwp1b3jwbstx" path="res://enemy_hand.gd" id="4_kek77"]
+[ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://deck.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://0rbk8pr45wec" path="res://input_manager.gd" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://cp1f5jxg87xox" path="res://fundo2.svg" id="10_dg77c"]
+[ext_resource type="Texture2D" uid="uid://cohtegebhroe6" path="res://fundo1_1.svg" id="10_w48qg"]
+[ext_resource type="Texture2D" uid="uid://ir6iprjvix1k" path="res://fundo1_2.svg" id="11_vivmo"]
+[ext_resource type="Texture2D" uid="uid://d10nmm2y35ctd" path="res://fundo3.svg" id="11_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://diyr7djxxsthm" path="res://fundo4.svg" id="12_w48qg"]
+[ext_resource type="Texture2D" uid="uid://bu2wm770iir2h" path="res://baralho.svg" id="13_w48qg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vivmo"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("2_kek77")
+}, {
+"duration": 2.0,
+"texture": ExtResource("10_w48qg")
+}, {
+"duration": 2.0,
+"texture": ExtResource("11_vivmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_w48qg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kek77")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("10_dg77c")
+}, {
+"duration": 0.5,
+"texture": ExtResource("11_ycdy4")
+}, {
+"duration": 0.5,
+"texture": ExtResource("12_w48qg")
+}, {
+"duration": 0.5,
+"texture": ExtResource("11_ycdy4")
+}, {
+"duration": 0.5,
+"texture": ExtResource("10_dg77c")
+}, {
+"duration": 0.5,
+"texture": ExtResource("2_kek77")
+}],
+"loop": true,
+"name": &"pede_carta",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(39.4155, 69.4614)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_5vw27")
+
+[node name="jogador_texto" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+offset_left = 674.0
+offset_top = 820.0
+offset_right = 836.0
+offset_bottom = 860.0
+scale = Vector2(4, 4.16)
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hand" type="Node2D" parent="."]
+script = ExtResource("3_1bvp3")
+
+[node name="enemy_hand" type="Node2D" parent="."]
+script = ExtResource("4_kek77")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -10
+position = Vector2(960, 523)
+scale = Vector2(0.584016, 0.584016)
+sprite_frames = SubResource("SpriteFrames_vivmo")
+animation = &"pede_carta"
+autoplay = "idle"
+frame_progress = 0.712994
+
+[node name="card-manager" type="Node2D" parent="."]
+script = ExtResource("1_0xm2m")
+
+[node name="card_slot16" parent="." instance=ExtResource("3_h2yge")]
+visible = false
+position = Vector2(998, 713)
+scale = Vector2(1.31088, 1.68916)
+
+[node name="deck" type="Node2D" parent="."]
+position = Vector2(1341, 915)
+rotation = -0.958186
+scale = Vector2(1.32912, 1.29982)
+script = ExtResource("4_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="deck"]
+position = Vector2(30.3576, -82.9386)
+rotation = 0.934077
+scale = Vector2(0.447027, 0.447027)
+texture = ExtResource("13_w48qg")
+
+[node name="Area2D" type="Area2D" parent="deck"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deck/Area2D"]
+position = Vector2(30.5388, -84.4871)
+rotation = -0.610044
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="input_manager" type="Node2D" parent="."]
+script = ExtResource("6_7mycd")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="inimigo_texto" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+offset_left = 675.0
+offset_top = 590.0
+offset_right = 837.0
+offset_bottom = 630.0
+scale = Vector2(4, 4.16)
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
