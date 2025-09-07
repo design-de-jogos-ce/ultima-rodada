@@ -66,9 +66,7 @@ func enemy_turn():
 	if !enemy_hand_reference.enemy_pass:
 		if enemy_hand_reference.hand_sum > player_hand_reference.hand_sum:
 			if player_hand_reference.player_pass:
-				
 				enemy_hand_reference.enemy_pass = 1
-				
 				enemy_text_reference.text = "[wave amp=50 freq=7]Inimigo passou[/wave]"
 				await get_tree().create_timer(1.5).timeout
 				enemy_text_reference.text = ""
