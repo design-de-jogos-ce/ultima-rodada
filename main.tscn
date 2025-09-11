@@ -67,6 +67,12 @@ size = Vector2(39.4155, 69.4614)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5vw27")
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="hand" type="Node2D" parent="."]
+visible = false
+script = ExtResource("3_1bvp3")
+
 [node name="jogador_texto" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
@@ -82,12 +88,6 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="hand" type="Node2D" parent="."]
-script = ExtResource("3_1bvp3")
-
-[node name="enemy_hand" type="Node2D" parent="."]
-script = ExtResource("4_kek77")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -10
 position = Vector2(960, 523)
@@ -95,7 +95,10 @@ scale = Vector2(0.584016, 0.584016)
 sprite_frames = SubResource("SpriteFrames_vivmo")
 animation = &"pede_carta"
 autoplay = "idle"
-frame_progress = 0.712994
+frame_progress = 0.876106
+
+[node name="enemy_hand" type="Node2D" parent="."]
+script = ExtResource("4_kek77")
 
 [node name="card-manager" type="Node2D" parent="."]
 script = ExtResource("1_0xm2m")
@@ -128,8 +131,6 @@ shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="input_manager" type="Node2D" parent="."]
 script = ExtResource("6_7mycd")
-
-[node name="Timer" type="Timer" parent="."]
 
 [node name="inimigo_texto" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
