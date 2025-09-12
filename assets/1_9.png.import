@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvy1j0tjxjljk"
-path="res://.godot/imported/Drawing 2025-06-04 20.59.47.excalidraw.svg-135841c552904a7727c10e16f7f488ce.ctex"
+uid="uid://chpw14asuft77"
+path="res://.godot/imported/1_9.png-a20064f718704de1eaa06c393c162eb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Drawing 2025-06-04 20.59.47.excalidraw.svg"
-dest_files=["res://.godot/imported/Drawing 2025-06-04 20.59.47.excalidraw.svg-135841c552904a7727c10e16f7f488ce.ctex"]
+source_file="res://assets/1_9.png"
+dest_files=["res://.godot/imported/1_9.png-a20064f718704de1eaa06c393c162eb4.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

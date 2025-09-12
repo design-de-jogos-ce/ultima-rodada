@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ir6iprjvix1k"
-path="res://.godot/imported/fundo1_2.svg-ac7f7b6fc1b9c43d644c103099fbf8df.ctex"
+uid="uid://bu2wm770iir2h"
+path="res://.godot/imported/baralho.svg-4995d11f7c242b96427dc0e29c5e08c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fundo1_2.svg"
-dest_files=["res://.godot/imported/fundo1_2.svg-ac7f7b6fc1b9c43d644c103099fbf8df.ctex"]
+source_file="res://assets/baralho.svg"
+dest_files=["res://.godot/imported/baralho.svg-4995d11f7c242b96427dc0e29c5e08c7.ctex"]
 
 [params]
 

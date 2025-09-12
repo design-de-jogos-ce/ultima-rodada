@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu2wm770iir2h"
-path="res://.godot/imported/baralho.svg-f4fb0947b2e9f1c6f0b35e54a43438b2.ctex"
+uid="uid://bjihxbdnjy7km"
+path="res://.godot/imported/pedecarta1.svg-bafb34b4ddf7bf1cb7309d4e9798e617.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://baralho.svg"
-dest_files=["res://.godot/imported/baralho.svg-f4fb0947b2e9f1c6f0b35e54a43438b2.ctex"]
+source_file="res://assets/pedecarta1.svg"
+dest_files=["res://.godot/imported/pedecarta1.svg-bafb34b4ddf7bf1cb7309d4e9798e617.ctex"]
 
 [params]
 

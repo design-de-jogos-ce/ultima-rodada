@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfkoahkpuqthp"
-path="res://.godot/imported/1_2.png-7531de9487658b307184f6f9dedaf39a.ctex"
+uid="uid://cohtegebhroe6"
+path="res://.godot/imported/idle1.svg-32c7a7ac5cade1c286e49c1148a7e878.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CARTAS/1_2.png"
-dest_files=["res://.godot/imported/1_2.png-7531de9487658b307184f6f9dedaf39a.ctex"]
+source_file="res://assets/idle1.svg"
+dest_files=["res://.godot/imported/idle1.svg-32c7a7ac5cade1c286e49c1148a7e878.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

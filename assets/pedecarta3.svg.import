@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckbwqjbs83lsb"
-path="res://.godot/imported/1_7.png-a4b140a45d9c9d304e656f50c4682711.ctex"
+uid="uid://d10nmm2y35ctd"
+path="res://.godot/imported/pedecarta3.svg-8b673ba0b7416dc2c786712675369827.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CARTAS/1_7.png"
-dest_files=["res://.godot/imported/1_7.png-a4b140a45d9c9d304e656f50c4682711.ctex"]
+source_file="res://assets/pedecarta3.svg"
+dest_files=["res://.godot/imported/pedecarta3.svg-8b673ba0b7416dc2c786712675369827.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
