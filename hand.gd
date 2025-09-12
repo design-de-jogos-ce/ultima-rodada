@@ -6,13 +6,24 @@ const DEFAULT_SPEED= 0.1
 var hand_y_position
 var player_hand = []
 var center_screen_x
-var player_pass
-var hand_size
+var surrender
+var stand
+var deck_reference
+var deeler_reference
+var double_down
+var win
 var hand_sum
+var bust
 
 
 func _ready() -> void:
-	player_pass=0
+	win = 0
+	double_down=0
+	surrender=0
+	bust = 0
+	deck_reference = $"../deck"
+	deeler_reference = $".."
+	stand = 0
 	hand_sum = 0
 	center_screen_x = get_viewport().size.x/2
 	hand_y_position =  (5*(get_viewport().size.y/6)) + 115
@@ -46,3 +57,16 @@ func remove_card_from_hand(card):
 	if card in player_hand:
 		player_hand.erase(card)
 		update_hand_positions(DEFAULT_SPEED)
+
+func _double_down():
+	print("Jogador dobrou a aposta")
+	double_down = 1
+	deck_reference.draw_card()
+	deeler_reference.check_victory()
+	deeler_reference.switch_turn()
+	
+func _surrender():
+	print("Jogador se rendeu")
+	surrender = 1
+	deeler_reference.check_victory()
+	deeler_reference.switch_turn()

@@ -1,37 +1,37 @@
 [gd_scene load_steps=17 format=3 uid="uid://cnrxwm0ehctws"]
 
-[ext_resource type="Script" uid="uid://bq4edt0fekpbu" path="res://card_manager.gd" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://main.gd" id="1_5vw27"]
-[ext_resource type="Texture2D" uid="uid://bjihxbdnjy7km" path="res://assets/pedecarta1.svg" id="2_kek77"]
-[ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://hand.gd" id="3_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://cy8xx5j57cnat" path="res://scenes/card_slot.tscn" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://dwwp1b3jwbstx" path="res://enemy_hand.gd" id="4_kek77"]
-[ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://deck.gd" id="4_lquwl"]
-[ext_resource type="Script" uid="uid://0rbk8pr45wec" path="res://input_manager.gd" id="6_7mycd"]
-[ext_resource type="Texture2D" uid="uid://cp1f5jxg87xox" path="res://assets/pedecarta2.svg" id="10_dg77c"]
-[ext_resource type="Texture2D" uid="uid://cohtegebhroe6" path="res://assets/idle1.svg" id="10_w48qg"]
-[ext_resource type="Texture2D" uid="uid://ir6iprjvix1k" path="res://assets/idle2.svg" id="11_vivmo"]
-[ext_resource type="Texture2D" uid="uid://d10nmm2y35ctd" path="res://assets/pedecarta3.svg" id="11_ycdy4"]
-[ext_resource type="Texture2D" uid="uid://diyr7djxxsthm" path="res://assets/pedecarta4.svg" id="12_w48qg"]
-[ext_resource type="Texture2D" uid="uid://bu2wm770iir2h" path="res://assets/baralho.svg" id="13_w48qg"]
+[ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://main.gd" id="1_a8y0u"]
+[ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://hand.gd" id="2_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://bjihxbdnjy7km" path="res://assets/pedecarta1.svg" id="3_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://cohtegebhroe6" path="res://assets/idle1.svg" id="4_muem4"]
+[ext_resource type="Texture2D" uid="uid://ir6iprjvix1k" path="res://assets/idle2.svg" id="5_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://cp1f5jxg87xox" path="res://assets/pedecarta2.svg" id="6_0ld40"]
+[ext_resource type="Texture2D" uid="uid://d10nmm2y35ctd" path="res://assets/pedecarta3.svg" id="7_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://diyr7djxxsthm" path="res://assets/pedecarta4.svg" id="8_yc10j"]
+[ext_resource type="Script" uid="uid://dwwp1b3jwbstx" path="res://enemy_hand.gd" id="9_jscy8"]
+[ext_resource type="Script" uid="uid://bq4edt0fekpbu" path="res://card_manager.gd" id="10_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://cy8xx5j57cnat" path="res://scenes/card_slot.tscn" id="11_y6deb"]
+[ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://deck.gd" id="12_og1vs"]
+[ext_resource type="Texture2D" uid="uid://bu2wm770iir2h" path="res://assets/baralho.svg" id="13_2wyq8"]
+[ext_resource type="Script" uid="uid://0rbk8pr45wec" path="res://input_manager.gd" id="14_vxglm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vivmo"]
 animations = [{
 "frames": [{
 "duration": 2.0,
-"texture": ExtResource("2_kek77")
+"texture": ExtResource("3_jbj1t")
 }, {
 "duration": 2.0,
-"texture": ExtResource("10_w48qg")
+"texture": ExtResource("4_muem4")
 }, {
 "duration": 2.0,
-"texture": ExtResource("11_vivmo")
+"texture": ExtResource("5_dp3eg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_w48qg")
+"texture": ExtResource("4_muem4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_kek77")
+"texture": ExtResource("3_jbj1t")
 }],
 "loop": true,
 "name": &"idle",
@@ -39,22 +39,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 0.5,
-"texture": ExtResource("10_dg77c")
+"texture": ExtResource("6_0ld40")
 }, {
 "duration": 0.5,
-"texture": ExtResource("11_ycdy4")
+"texture": ExtResource("7_gqmmt")
 }, {
 "duration": 0.5,
-"texture": ExtResource("12_w48qg")
+"texture": ExtResource("8_yc10j")
 }, {
 "duration": 0.5,
-"texture": ExtResource("11_ycdy4")
+"texture": ExtResource("7_gqmmt")
 }, {
 "duration": 0.5,
-"texture": ExtResource("10_dg77c")
+"texture": ExtResource("6_0ld40")
 }, {
 "duration": 0.5,
-"texture": ExtResource("2_kek77")
+"texture": ExtResource("3_jbj1t")
 }],
 "loop": true,
 "name": &"pede_carta",
@@ -65,13 +65,13 @@ animations = [{
 size = Vector2(39.4155, 69.4614)
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_5vw27")
+script = ExtResource("1_a8y0u")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="hand" type="Node2D" parent="."]
 visible = false
-script = ExtResource("3_1bvp3")
+script = ExtResource("2_jkv2x")
 
 [node name="jogador_texto" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -98,12 +98,12 @@ autoplay = "idle"
 frame_progress = 0.876106
 
 [node name="enemy_hand" type="Node2D" parent="."]
-script = ExtResource("4_kek77")
+script = ExtResource("9_jscy8")
 
 [node name="card-manager" type="Node2D" parent="."]
-script = ExtResource("1_0xm2m")
+script = ExtResource("10_pm3ni")
 
-[node name="card_slot16" parent="." instance=ExtResource("3_h2yge")]
+[node name="card_slot16" parent="." instance=ExtResource("11_y6deb")]
 visible = false
 position = Vector2(998, 713)
 scale = Vector2(1.31088, 1.68916)
@@ -112,13 +112,13 @@ scale = Vector2(1.31088, 1.68916)
 position = Vector2(1341, 915)
 rotation = -0.958186
 scale = Vector2(1.32912, 1.29982)
-script = ExtResource("4_lquwl")
+script = ExtResource("12_og1vs")
 
 [node name="Sprite2D" type="Sprite2D" parent="deck"]
 position = Vector2(30.3576, -82.9386)
 rotation = 0.934077
 scale = Vector2(0.447027, 0.447027)
-texture = ExtResource("13_w48qg")
+texture = ExtResource("13_2wyq8")
 
 [node name="Area2D" type="Area2D" parent="deck"]
 collision_layer = 4
@@ -130,7 +130,7 @@ rotation = -0.610044
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="input_manager" type="Node2D" parent="."]
-script = ExtResource("6_7mycd")
+script = ExtResource("14_vxglm")
 
 [node name="inimigo_texto" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)

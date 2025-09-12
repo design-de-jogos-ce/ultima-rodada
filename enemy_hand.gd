@@ -7,13 +7,17 @@ const MAX_HAND_SIZE = 3
 var hand_y_position
 var player_hand = []
 var center_screen_x
-var hand_size
+var revel
+var bust
+var win
 var hand_sum
-var enemy_pass
-
+var stand
 
 func _ready() -> void:
-	enemy_pass = 0
+	win = 0
+	revel = 0
+	stand = 0
+	bust = 0
 	hand_sum = 0
 	center_screen_x = get_viewport().size.x/2
 	hand_y_position =  ((get_viewport().size.y/2)) + 150
