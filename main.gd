@@ -34,6 +34,9 @@ func initial_drag():
 	initial = 1
 
 func switch_turn():
+	await get_tree().create_timer(1.0).timeout
+	for i in range(enemy_hand_reference.player_hand.size()):
+		enemy_hand_reference.player_hand[i].get_node("card-sprite").texture = load(enemy_hand_reference.player_hand[i].image_path) 
 	player_turn = 0
 	enemy_turn()
 	
@@ -44,7 +47,11 @@ func check_victory():
 	if not player_hand_reference.stand and not player_hand_reference.bust:
 		if player_hand_reference.hand_sum > table_limit:
 			player_hand_reference.bust = 1
+			player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
+			await get_tree().create_timer(1.5).timeout
+			player_text_reference.text = ""
 			print("Jogador estourou")
+			switch_turn()
 
 		if player_hand_reference.hand_sum == table_limit:
 			player_hand_reference.win = 1
@@ -71,5 +78,6 @@ func check_victory():
 
 	
 func enemy_turn():
-	pass
 	
+	deck_reference.draw_card()
+	pass

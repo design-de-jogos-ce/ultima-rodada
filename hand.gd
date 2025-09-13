@@ -14,6 +14,7 @@ var double_down
 var win
 var hand_sum
 var bust
+var player_text_reference
 
 
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _ready() -> void:
 	double_down=0
 	surrender=0
 	bust = 0
+	player_text_reference = $"../jogador_texto"
 	deck_reference = $"../deck"
 	deeler_reference = $".."
 	stand = 0
@@ -60,6 +62,9 @@ func remove_card_from_hand(card):
 
 func _double_down():
 	print("Jogador dobrou a aposta")
+	player_text_reference.text = "[wave amp=50 freq=7] Dobrou [/wave]"
+	await get_tree().create_timer(1.5).timeout
+	player_text_reference.text = ""
 	double_down = 1
 	deck_reference.draw_card()
 	deeler_reference.check_victory()
@@ -67,6 +72,9 @@ func _double_down():
 	
 func _surrender():
 	print("Jogador se rendeu")
+	player_text_reference.text = "[wave amp=50 freq=7] Rendeu [/wave]"
+	await get_tree().create_timer(1.5).timeout
+	player_text_reference.text = ""
 	surrender = 1
 	deeler_reference.check_victory()
 	deeler_reference.switch_turn()

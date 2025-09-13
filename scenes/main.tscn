@@ -74,13 +74,12 @@ visible = false
 script = ExtResource("2_jkv2x")
 
 [node name="jogador_texto" type="RichTextLabel" parent="."]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
+light_mask = 0
 texture_filter = 1
-offset_left = 674.0
-offset_top = 820.0
-offset_right = 836.0
-offset_bottom = 860.0
+offset_left = 184.0
+offset_top = 817.0
+offset_right = 346.0
+offset_bottom = 857.0
 scale = Vector2(4, 4.16)
 bbcode_enabled = true
 fit_content = true
@@ -133,13 +132,11 @@ shape = SubResource("RectangleShape2D_lquwl")
 script = ExtResource("14_vxglm")
 
 [node name="inimigo_texto" type="RichTextLabel" parent="."]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
-offset_left = 675.0
-offset_top = 590.0
-offset_right = 837.0
-offset_bottom = 630.0
+offset_left = 185.0
+offset_top = 585.0
+offset_right = 347.0
+offset_bottom = 625.0
 scale = Vector2(4, 4.16)
 bbcode_enabled = true
 fit_content = true

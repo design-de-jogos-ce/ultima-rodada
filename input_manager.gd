@@ -22,18 +22,19 @@ func _ready() -> void:
 func _input(event) -> void:
 	if event.is_action_pressed("ui_m") and deeler_reference.initial and deeler_reference.player_turn and not player_hand_reference.double_down:
 		player_hand_reference._double_down()
-	
+		
+	if event.is_action_pressed("ui_n") and deeler_reference.initial and deeler_reference.player_turn and not player_hand_reference.double_down:
+		player_hand_reference.stand = 1
+		deeler_reference.switch_turn()
+		
+		player_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		player_text_reference.text = ""
+		
+		print("Player passou")
+		
 	if event.is_action_pressed("ui_accept") and deeler_reference.initial and deeler_reference.player_turn and not player_hand_reference.surrender:
 		player_hand_reference._surrender()
-
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
-		if event.pressed and not player_hand_reference.stand:
-			emit_signal("left_mouse_button_clicked")
-			player_hand_reference.stand = 1		
-			deeler_reference.switch_turn()
-			print("Player passou")
-		else:
-			emit_signal("left_mouse_button_released")
 
 	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
 		if event.pressed:
