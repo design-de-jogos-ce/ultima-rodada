@@ -19,7 +19,7 @@ func _ready() -> void:
 	deeler_reference= $".."
 	deck.shuffle()
 	hand_y_position = (5*(get_viewport().size.y/6)) + 50
-	card_databese_reference = preload("res://card_database.gd")
+	card_databese_reference = preload("res://scripts/cards/card_database.gd")
 	back = str("res://assets/verso.png")
 
 
