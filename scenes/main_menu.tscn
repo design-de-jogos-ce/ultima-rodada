@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://wulf0m8edyi5"]
+
+[ext_resource type="Script" uid="uid://8g2b3jpek85d" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+
+[node name="mainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_l6cm7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1915.0
+offset_bottom = 1082.0
+color = Color(0.83361, 0.388025, 0.0161696, 1)
+
+[node name="ButtonIniciarJogo" type="Button" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 0
+offset_left = 701.0
+offset_top = 451.0
+offset_right = 1114.0
+offset_bottom = 564.0
+text = "Iniciar Jogo"
+icon_alignment = 1
+
+[node name="ButtonSairJogo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 658.0
+offset_right = 1106.0
+offset_bottom = 771.0
+text = "Sair do Jogo"
+
+[connection signal="pressed" from="ButtonIniciarJogo" to="." method="_on_button_iniciar_jogo_pressed"]
+[connection signal="pressed" from="ButtonSairJogo" to="." method="_on_button_sair_jogo_pressed"]

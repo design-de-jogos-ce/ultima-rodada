@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="cartas de junho"
-run/main_scene="uid://cnrxwm0ehctws"
+run/main_scene="uid://wulf0m8edyi5"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

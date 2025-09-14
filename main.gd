@@ -11,6 +11,7 @@ var table_limit
 var initial
 
 @onready var drag := $AnimatedSprite2D
+@onready var endgame_ui := $endGameUI
 
 func _ready() -> void:
 	player_text_reference = $jogador_texto
@@ -75,9 +76,19 @@ func check_victory():
 			
 	if player_hand_reference.bust and enemy_hand_reference.bust:
 		print("Empararam estourando")
-
+	await get_tree().create_timer(3.0).timeout
+	display_end_game_ui()
 	
 func enemy_turn():
 	
 	deck_reference.draw_card()
 	pass
+	
+func display_end_game_ui():
+	endgame_ui.show()
+	
+func _on_play_again_pressed():
+	get_tree().reload_current_scene()
+	
+func _on_return_to_menu_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

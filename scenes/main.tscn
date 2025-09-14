@@ -143,3 +143,29 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="endGameUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="playAgain" type="Button" parent="endGameUI"]
+layout_mode = 0
+offset_left = 804.0
+offset_top = 472.0
+offset_right = 1168.0
+offset_bottom = 595.0
+text = "Jogar Novamente"
+
+[node name="returnToMenu" type="Button" parent="endGameUI"]
+layout_mode = 0
+offset_left = 807.0
+offset_top = 642.0
+offset_right = 1169.0
+offset_bottom = 764.0
+text = "Voltar ao Menu"
+
+[connection signal="pressed" from="endGameUI/playAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="endGameUI/returnToMenu" to="." method="_on_return_to_menu_pressed"]
