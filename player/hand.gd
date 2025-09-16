@@ -64,20 +64,22 @@ func remove_card_from_hand(card):
 		update_hand_positions(DEFAULT_SPEED)
 
 func _double_down():
-	print("Jogador dobrou a aposta")
-	player_text_reference.text = "[wave amp=50 freq=7] Dobrou [/wave]"
-	await get_tree().create_timer(1.5).timeout
-	player_text_reference.text = ""
-	double_down = 1
-	deck_reference.draw_card()
-	deeler_reference.check_victory()
-	deeler_reference.switch_turn()
-	
+	if not bust and not stand and not double_down and not surrender:
+		print("Jogador dobrou a aposta")
+		player_text_reference.text = "[wave amp=50 freq=7] Dobrou [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		player_text_reference.text = ""
+		double_down = 1
+		deck_reference.draw_card()
+		deeler_reference.check_victory()
+		deeler_reference.switch_turn()
+		
 func _surrender():
-	print("Jogador se rendeu")
-	player_text_reference.text = "[wave amp=50 freq=7] Rendeu [/wave]"
-	await get_tree().create_timer(1.5).timeout
-	player_text_reference.text = ""
-	surrender = 1
-	deeler_reference.check_victory()
-	deeler_reference.switch_turn()
+	if not bust and not stand and not double_down and not surrender:
+		print("Jogador se rendeu")
+		player_text_reference.text = "[wave amp=50 freq=7] Rendeu [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		player_text_reference.text = ""
+		surrender = 1
+		deeler_reference.check_victory()
+		deeler_reference.switch_turn()

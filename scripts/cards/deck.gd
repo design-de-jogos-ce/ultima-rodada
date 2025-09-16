@@ -53,5 +53,4 @@ func draw_card():
 		enemy_hand.add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	else:
 		hand_reference.add_card_to_hand(new_card, CARD_DRAW_SPEED)
-	if deeler_reference.initial:
-		deeler_reference.check_victory()
+	deeler_reference.switch_turn()
