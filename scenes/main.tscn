@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnrxwm0ehctws"]
+[gd_scene load_steps=23 format=3 uid="uid://cnrxwm0ehctws"]
 
 [ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://player/hand.gd" id="2_jkv2x"]
@@ -6,10 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://cohtegebhroe6" path="res://assets/idle1.svg" id="4_muem4"]
 [ext_resource type="Texture2D" uid="uid://ir6iprjvix1k" path="res://assets/idle2.svg" id="5_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://cp1f5jxg87xox" path="res://assets/pedecarta2.svg" id="6_0ld40"]
+[ext_resource type="Texture2D" uid="uid://cq1slsg0dksw0" path="res://assets/1_ani_morte_person.svg" id="6_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://d10nmm2y35ctd" path="res://assets/pedecarta3.svg" id="7_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://rb8wnlihnf6f" path="res://assets/2_ani_morte_person.svg" id="7_yc10j"]
+[ext_resource type="Texture2D" uid="uid://cbnnot8htbqix" path="res://assets/3_ani_morte_person_.svg" id="8_jscy8"]
 [ext_resource type="Texture2D" uid="uid://diyr7djxxsthm" path="res://assets/pedecarta4.svg" id="8_yc10j"]
 [ext_resource type="Script" uid="uid://dwwp1b3jwbstx" path="res://enemy/enemy_hand.gd" id="9_jscy8"]
+[ext_resource type="Texture2D" uid="uid://dkfrdxicu2u0c" path="res://assets/4_ani_morte_person.svg" id="9_pm3ni"]
 [ext_resource type="Script" uid="uid://bq4edt0fekpbu" path="res://scripts/cards/card_manager.gd" id="10_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://2tifxw1slp14" path="res://assets/5_ani_morte_person.svg" id="10_y6deb"]
+[ext_resource type="Texture2D" uid="uid://c6ubbjxnhmkjq" path="res://assets/6_ani_morte_person.svg" id="11_og1vs"]
 [ext_resource type="PackedScene" uid="uid://cy8xx5j57cnat" path="res://scenes/card_slot.tscn" id="11_y6deb"]
 [ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://scripts/cards/deck.gd" id="12_og1vs"]
 [ext_resource type="Texture2D" uid="uid://bu2wm770iir2h" path="res://assets/baralho.svg" id="13_2wyq8"]
@@ -35,6 +41,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gqmmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yc10j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jscy8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pm3ni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_y6deb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_og1vs")
+}],
+"loop": true,
+"name": &"morte",
 "speed": 5.0
 }, {
 "frames": [{
@@ -101,9 +130,10 @@ z_index = -10
 position = Vector2(960, 523)
 scale = Vector2(0.584016, 0.584016)
 sprite_frames = SubResource("SpriteFrames_vivmo")
-animation = &"pede_carta"
+animation = &"morte"
 autoplay = "idle"
-frame_progress = 0.876106
+frame = 5
+frame_progress = 0.6574987
 
 [node name="enemy_hand" type="Node2D" parent="."]
 script = ExtResource("9_jscy8")
