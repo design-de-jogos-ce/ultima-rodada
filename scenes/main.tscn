@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://cnrxwm0ehctws"]
+[gd_scene load_steps=24 format=3 uid="uid://cnrxwm0ehctws"]
 
 [ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://player/hand.gd" id="2_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://bjihxbdnjy7km" path="res://assets/pedecarta1.svg" id="3_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://dtw2cd3obpck2" path="res://assets/Captura de tela 2025-09-16 202647.png" id="3_yc10j"]
 [ext_resource type="Texture2D" uid="uid://cohtegebhroe6" path="res://assets/idle1.svg" id="4_muem4"]
 [ext_resource type="Texture2D" uid="uid://ir6iprjvix1k" path="res://assets/idle2.svg" id="5_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://cp1f5jxg87xox" path="res://assets/pedecarta2.svg" id="6_0ld40"]
@@ -124,6 +125,11 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(917, 569)
+scale = Vector2(1.4446563, 1.4446564)
+texture = ExtResource("3_yc10j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -10
