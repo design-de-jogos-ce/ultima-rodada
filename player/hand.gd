@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var hand_counter := $"hand_counter"
+
 const CARD_WIDTH = 150
 const DEFAULT_SPEED= 0.1
 
@@ -38,6 +40,7 @@ func add_card_to_hand(card, speed):
 		update_hand_positions(speed)
 	else:
 		animate_car_to_position(card,card.starter_position,speed)
+	hand_counter.text = str(hand_sum)
 		
 func update_hand_positions(speed):
 	for i in range(player_hand.size()):

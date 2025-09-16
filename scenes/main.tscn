@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://diyr7djxxsthm" path="res://assets/pedecarta4.svg" id="8_yc10j"]
 [ext_resource type="Script" uid="uid://dwwp1b3jwbstx" path="res://enemy/enemy_hand.gd" id="9_jscy8"]
 [ext_resource type="Script" uid="uid://bq4edt0fekpbu" path="res://scripts/cards/card_manager.gd" id="10_pm3ni"]
-[ext_resource type="PackedScene" path="res://scenes/card_slot.tscn" id="11_y6deb"]
+[ext_resource type="PackedScene" uid="uid://cy8xx5j57cnat" path="res://scenes/card_slot.tscn" id="11_y6deb"]
 [ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://scripts/cards/deck.gd" id="12_og1vs"]
 [ext_resource type="Texture2D" uid="uid://bu2wm770iir2h" path="res://assets/baralho.svg" id="13_2wyq8"]
 [ext_resource type="Script" uid="uid://0rbk8pr45wec" path="res://scripts/input_manager.gd" id="14_vxglm"]
@@ -70,8 +70,17 @@ script = ExtResource("1_a8y0u")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="hand" type="Node2D" parent="."]
-visible = false
+position = Vector2(-89, -123)
 script = ExtResource("2_jkv2x")
+
+[node name="hand_counter" type="Label" parent="hand"]
+offset_left = 1727.0
+offset_top = 1058.0
+offset_right = 1762.0
+offset_bottom = 1135.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 60
+text = "0"
 
 [node name="jogador_texto" type="RichTextLabel" parent="."]
 light_mask = 0
@@ -98,6 +107,14 @@ frame_progress = 0.876106
 
 [node name="enemy_hand" type="Node2D" parent="."]
 script = ExtResource("9_jscy8")
+
+[node name="enemy_counter" type="Label" parent="enemy_hand"]
+offset_left = 1163.0
+offset_top = 504.0
+offset_right = 1203.0
+offset_bottom = 580.0
+theme_override_font_sizes/font_size = 55
+text = "0"
 
 [node name="card-manager" type="Node2D" parent="."]
 script = ExtResource("10_pm3ni")
