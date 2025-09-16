@@ -41,10 +41,7 @@ func draw_card():
 	var card_scene = preload(CARD_PATH)
 	var new_card = card_scene.instantiate()
 	new_card.image_path = str("res://assets/"+card_drawn+".svg")
-	if (not enemy_hand.hand_sum and not deeler_reference.player_turn and not enemy_hand.revel):
-		new_card.get_node("card-sprite").texture = load(back) 
-	else:
-		new_card.get_node("card-sprite").texture = load(new_card.image_path) 
+	new_card.get_node("card-sprite").texture = load(new_card.image_path) 
 	$"../card-manager".add_child(new_card)
 	new_card.name = "Card"
 	new_card.card_suit = card_databese_reference.CARDS[card_drawn][0]
