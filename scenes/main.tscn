@@ -130,10 +130,8 @@ z_index = -10
 position = Vector2(960, 523)
 scale = Vector2(0.584016, 0.584016)
 sprite_frames = SubResource("SpriteFrames_vivmo")
-animation = &"morte"
+animation = &"idle"
 autoplay = "idle"
-frame = 5
-frame_progress = 0.6574987
 
 [node name="enemy_hand" type="Node2D" parent="."]
 script = ExtResource("9_jscy8")

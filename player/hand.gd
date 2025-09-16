@@ -43,11 +43,22 @@ func add_card_to_hand(card, speed):
 	hand_counter.text = str(hand_sum)
 		
 func update_hand_positions(speed):
-	for i in range(player_hand.size()):
-		var new_position = Vector2(calculate_hand_position(i), hand_y_position)
+	var total = player_hand.size()
+	var arc_radius = 350.0 # raio do arco (quanto maior, mais suave a curva)
+	var angle_step = deg_to_rad(15) # ângulo entre cada carta
+	var start_angle = -angle_step * (total - 1) / 2  # centraliza o arco
+
+	for i in range(total):
+		var angle = start_angle + i * angle_step
+		# posição em arco: desloca no X e no Y
+		var x = center_screen_x + sin(angle) * arc_radius
+		var y = hand_y_position - cos(angle) * arc_radius * 0.2 # 0.2 = achatamento vertical
+		
+		var new_position = Vector2(x, y)
 		var card = player_hand[i]
 		card.starter_position = new_position
-		animate_car_to_position(card, new_position,speed)
+		animate_car_to_position(card, new_position, speed)
+
 	
 func calculate_hand_position(i):
 	var total_width = (player_hand.size() - 1) * CARD_WIDTH

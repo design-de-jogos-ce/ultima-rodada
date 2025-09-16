@@ -40,7 +40,7 @@ func draw_card():
 
 	var card_scene = preload(CARD_PATH)
 	var new_card = card_scene.instantiate()
-	new_card.image_path = str("res://assets/"+card_drawn+".svg")
+	new_card.image_path = str("res://assets/"+card_drawn+".png")
 	new_card.get_node("card-sprite").texture = load(new_card.image_path) 
 	$"../card-manager".add_child(new_card)
 	new_card.name = "Card"
