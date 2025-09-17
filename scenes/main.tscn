@@ -126,7 +126,8 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="perspectiva_alt" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(917, 569)
 scale = Vector2(1.4446563, 1.4446564)
 texture = ExtResource("3_yc10j")
