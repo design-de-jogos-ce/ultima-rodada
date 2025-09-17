@@ -106,7 +106,9 @@ func check_victory():
 			
 		
 func enemy_turn():
-	await get_tree().create_timer(1.0).timeout
+	drag.play("pede_carta")
+	await get_tree().create_timer(1.5).timeout
+	drag.play("idle")
 	deck_reference.draw_card()
 	
 func _on_play_again_pressed():

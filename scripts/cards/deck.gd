@@ -16,12 +16,14 @@ var card_databese_reference
 var hand_reference
 var enemy_hand
 var deeler_reference
+var animation_reference
 var hand_y_position
 var back
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hand_reference=$"../hand"
+	animation_reference = $"../AnimatedSprite2D"
 	enemy_hand = $"../enemy_hand"
 	deeler_reference= $".."
 	deck.shuffle()
@@ -47,7 +49,12 @@ func draw_card():
 	new_card.card_suit = card_databese_reference.CARDS[card_drawn][0]
 	new_card.card_value = card_databese_reference.CARDS[card_drawn][1]
 	if deeler_reference.player_turn == 0:
+		
 		enemy_hand.add_card_to_hand(new_card, CARD_DRAW_SPEED)
+		
+		
+		
 	else:
 		hand_reference.add_card_to_hand(new_card, CARD_DRAW_SPEED)
+		
 	deeler_reference.switch_turn()

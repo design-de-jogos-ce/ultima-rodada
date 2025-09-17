@@ -22,7 +22,7 @@ func _ready() -> void:
 	bust = 0
 	hand_sum = 0
 	center_screen_x = get_viewport().size.x/2
-	hand_y_position =  ((get_viewport().size.y/2)) + 100
+	hand_y_position =  ((get_viewport().size.y/3))+30 
 	
 
 func add_card_to_hand(card, speed):

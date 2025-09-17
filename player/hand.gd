@@ -30,7 +30,7 @@ func _ready() -> void:
 	stand = 0
 	hand_sum = 0
 	center_screen_x = get_viewport().size.x/2
-	hand_y_position =  (5*(get_viewport().size.y/6)) + 115
+	hand_y_position =  (5*(get_viewport().size.y/6)) + 30
 
 func add_card_to_hand(card, speed):
 	if card not in player_hand:

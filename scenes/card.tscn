@@ -9,7 +9,7 @@ size = Vector2(165.33337, 242.66675)
 [node name="card" type="Node2D"]
 z_index = -2
 position = Vector2(1280, 747)
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_rjlel")
 
 [node name="card-sprite" type="Sprite2D" parent="."]
