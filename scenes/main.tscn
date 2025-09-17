@@ -173,7 +173,7 @@ scale = Vector2(1.4769466, 1.4769465)
 sprite_frames = SubResource("SpriteFrames_vivmo")
 animation = &"pede_carta"
 autoplay = "idle"
-frame_progress = 0.48002982
+frame_progress = 0.81704456
 
 [node name="enemy_hand" type="Node2D" parent="."]
 script = ExtResource("9_jscy8")
