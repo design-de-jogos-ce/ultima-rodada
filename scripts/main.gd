@@ -36,79 +36,76 @@ func switch_turn():
 		enemy_turn()
 	else:
 		player_turn =1
-	
-	
+
 func check_victory():
 	if player_hand_reference.hand_sum > table_limit:
 		player_hand_reference.bust = 1
-		
+
 		player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-		
+
 	if enemy_hand_reference.hand_sum > table_limit:
-		
+
 		enemy_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
-		
+
 		enemy_hand_reference.bust = 1
-	
+
 	if player_hand_reference.bust and not enemy_hand_reference.bust:
 		print("Inimigo ganhou")
-		
+		reset_hands()
 		enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
-		
+
 	if enemy_hand_reference.bust and not player_hand_reference.bust:
 		print("Jogador ganhou")
 		
+		
+		reset_hands()
 		player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-	
-			
-	
+
 	if player_hand_reference.stand and enemy_hand_reference.stand:
 		if player_hand_reference.hand_sum > enemy_hand_reference.hand_sum:
 			print("Jogador ganhou")
-			
+			reset_hands()
 			player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			player_text_reference.text = ""
-			
+
 		elif player_hand_reference.hand_sum < enemy_hand_reference.hand_sum:
 			print("Inimigo ganhou")
-			
+			reset_hands()
 			enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
-			
-			
+
 
 		else:
 			print("Empate")
 			player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			player_text_reference.text = ""
-			
+
 			enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
-			
+
 	if enemy_hand_reference.bust and player_hand_reference.bust:
 		print("Empate")
-		
+
 		player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-		
+
 		enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
-			
-		
+
 func enemy_turn():
 	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
 		if(player_hand_reference.bust):
@@ -170,7 +167,6 @@ func enemy_turn():
 					enemy_text_reference.text = ""
 					switch_turn()
 
-
 func _on_play_again_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
@@ -178,3 +174,43 @@ func _on_play_again_pressed():
 func _on_return_to_menu_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	
+func reset_hands():
+	deck_reference.deck = ["1_1","1_2","1_3","1_4","1_5","1_6","1_7",
+			"1_8","1_9","1_10","1_11","1_12","1_13", 
+			"2_1","2_2","2_3","2_4","2_5","2_6","2_7",
+			"2_8","2_9","2_10","2_11","2_12","2_13", 
+			"3_1","3_2","3_3","3_4","3_5","3_6","3_7",
+			"3_8","3_9","3_10","3_11","3_12","3_13", 
+			"4_1","4_2","4_3","4_4","4_5","4_6","4_7",
+			"4_8","4_9","4_10","4_11","4_12","4_13"
+			]
+	for card in player_hand_reference.player_hand:
+		if is_instance_valid(card):
+			card.queue_free()
+	player_hand_reference.player_hand.clear()
+	player_hand_reference.hand_sum = 0
+	player_hand_reference.bust = 0
+	player_hand_reference.stand = 0
+	player_hand_reference.win = 0
+	player_hand_reference.double_down = 0
+	player_hand_reference.surrender = 0
+	player_hand_reference.hand_counter.text = "0"
+
+	for card in enemy_hand_reference.player_hand:
+		if is_instance_valid(card):
+			card.queue_free()
+	enemy_hand_reference.player_hand.clear()
+	enemy_hand_reference.hand_sum = 0
+	enemy_hand_reference.bust = 0
+	enemy_hand_reference.stand = 0
+	enemy_hand_reference.win = 0
+	enemy_hand_reference.revel = 0
+	enemy_hand_reference.hand_counter.text = "0"
+
+	# Resetar textos
+	player_text_reference.text = ""
+	enemy_text_reference.text = ""
+
+	# Resetar turno
+	player_turn = 1
