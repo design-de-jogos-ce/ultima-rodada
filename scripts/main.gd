@@ -110,14 +110,13 @@ func check_victory():
 			
 		
 func enemy_turn():
-
-	
 	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
 		if(player_hand_reference.bust):
 			enemy_hand_reference.stand= 1
 			enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
+			switch_turn()
 			
 		elif(player_hand_reference.stand):
 			if(player_hand_reference.hand_sum<enemy_hand_reference.hand_sum):
@@ -125,6 +124,7 @@ func enemy_turn():
 				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
 				await get_tree().create_timer(1.5).timeout
 				enemy_text_reference.text = ""
+				switch_turn()
 				
 			elif(player_hand_reference.hand_sum >= enemy_hand_reference.hand_sum and not( enemy_hand_reference.hand_sum ==21)):
 				var count=0
@@ -141,6 +141,7 @@ func enemy_turn():
 					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
 					await get_tree().create_timer(1.5).timeout
 					enemy_text_reference.text = ""
+					switch_turn()
 		else:
 			var count=0
 			for i in range(deck_reference.deck.size()):
@@ -151,6 +152,7 @@ func enemy_turn():
 				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
 				await get_tree().create_timer(1.5).timeout
 				enemy_text_reference.text = ""
+				switch_turn()
 			else:
 				count=0
 				for i in range(deck_reference.deck.size()):
@@ -166,9 +168,9 @@ func enemy_turn():
 					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
 					await get_tree().create_timer(1.5).timeout
 					enemy_text_reference.text = ""
-	else:
-		switch_turn()
-	
+					switch_turn()
+
+
 func _on_play_again_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()

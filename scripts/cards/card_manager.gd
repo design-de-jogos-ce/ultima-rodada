@@ -51,12 +51,12 @@ func on_hover_off_card(card):
 func highlight_card(card, hover_on):
 	
 	if hover_on:
-		card.scale.x += 0.05
-		card.scale.y += 0.05
-		card.z_index=2
+		card.scale.x = 0.75
+		card.scale.y = 0.75
+		card.z_index = 2
 	else:
-		card.scale.x -= 0.05
-		card.scale.y -= 0.05
+		card.scale.x = 0.7
+		card.scale.y = 0.7
 		
 		card.z_index=1
 			
