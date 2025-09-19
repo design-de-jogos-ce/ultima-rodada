@@ -8,6 +8,7 @@ var database_reference
 var player_text_reference
 var enemy_text_reference
 var table_limit
+var card_database_reference
 var initial
 
 @onready var drag := $AnimatedSprite2D
@@ -15,6 +16,7 @@ var initial
 
 func _ready() -> void:
 	player_text_reference = $jogador_texto
+	card_database_reference = preload("res://scripts/cards/card_database.gd")
 	enemy_text_reference = $inimigo_texto
 	player_hand_reference = $hand
 	enemy_hand_reference = $enemy_hand
@@ -65,7 +67,9 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-		
+	
+			
+	
 	if player_hand_reference.stand and enemy_hand_reference.stand:
 		if player_hand_reference.hand_sum > enemy_hand_reference.hand_sum:
 			print("Jogador ganhou")
@@ -110,6 +114,60 @@ func enemy_turn():
 	await get_tree().create_timer(1.5).timeout
 	drag.play("idle")
 	deck_reference.draw_card()
+	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
+		if(player_hand_reference.bust):
+			enemy_hand_reference.stand= 1
+			enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+			await get_tree().create_timer(1.5).timeout
+			enemy_text_reference.text = ""
+			
+		elif(player_hand_reference.stand):
+			if(player_hand_reference.hand_sum<enemy_hand_reference.hand_sum):
+				enemy_hand_reference.stand=1
+				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+				await get_tree().create_timer(1.5).timeout
+				enemy_text_reference.text = ""
+				
+			elif(player_hand_reference.hand_sum >= enemy_hand_reference.hand_sum and not( enemy_hand_reference.hand_sum ==21)):
+				var count=0
+				for i in range(deck_reference.deck.size()):
+					if (enemy_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
+						count+=1
+				if count> 2*(deck_reference.deck.size()/3):
+						drag.play("pede_carta")
+						await get_tree().create_timer(1.5).timeout
+						drag.play("idle")
+				else:
+					enemy_hand_reference.stand=1
+					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+					await get_tree().create_timer(1.5).timeout
+					enemy_text_reference.text = ""
+		else:
+			var count=0
+			for i in range(deck_reference.deck.size()):
+				if (player_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
+					count+=1
+			if count< 2*(deck_reference.deck.size()/3):
+				enemy_hand_reference.stand=1
+				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+				await get_tree().create_timer(1.5).timeout
+				enemy_text_reference.text = ""
+			else:
+				count=0
+				for i in range(deck_reference.deck.size()):
+					if (enemy_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
+						count+=1
+				if count> 2*(deck_reference.deck.size()/3):
+						drag.play("pede_carta")
+						await get_tree().create_timer(1.5).timeout
+						drag.play("idle")
+				else: 
+					enemy_hand_reference.stand=1
+					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+					await get_tree().create_timer(1.5).timeout
+					enemy_text_reference.text = ""
+	else:
+		switch_turn()
 	
 func _on_play_again_pressed():
 	get_tree().paused = false

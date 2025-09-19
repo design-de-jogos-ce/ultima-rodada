@@ -149,10 +149,10 @@ text = "0"
 [node name="jogador_texto" type="RichTextLabel" parent="."]
 light_mask = 0
 texture_filter = 1
-offset_left = 184.0
-offset_top = 817.0
-offset_right = 346.0
-offset_bottom = 857.0
+offset_left = 2.0
+offset_top = 833.0
+offset_right = 164.0
+offset_bottom = 873.0
 scale = Vector2(4, 4.16)
 bbcode_enabled = true
 fit_content = true
@@ -224,10 +224,10 @@ script = ExtResource("14_vxglm")
 
 [node name="inimigo_texto" type="RichTextLabel" parent="."]
 texture_filter = 1
-offset_left = 185.0
-offset_top = 585.0
-offset_right = 347.0
-offset_bottom = 625.0
+offset_left = -4.0
+offset_top = 310.0
+offset_right = 158.0
+offset_bottom = 350.0
 scale = Vector2(4, 4.16)
 bbcode_enabled = true
 fit_content = true
