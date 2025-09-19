@@ -106,6 +106,7 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
+		russian_roulette(true)
 		
 	if enemy_hand_reference.hand_sum > table_limit:
 		
@@ -114,6 +115,7 @@ func check_victory():
 		enemy_text_reference.text = ""
 		
 		enemy_hand_reference.bust = 1
+		russian_roulette(false)
 	
 	if player_hand_reference.bust and not enemy_hand_reference.bust:
 		print("Inimigo ganhou")
@@ -121,6 +123,7 @@ func check_victory():
 		enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
+		russian_roulette(true)
 		
 	if enemy_hand_reference.bust and not player_hand_reference.bust:
 		print("Jogador ganhou")
@@ -128,6 +131,7 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
+		russian_roulette(false)
 	
 			
 	
@@ -138,6 +142,7 @@ func check_victory():
 			player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			player_text_reference.text = ""
+			russian_roulette(false)
 			
 		elif player_hand_reference.hand_sum < enemy_hand_reference.hand_sum:
 			print("Inimigo ganhou")
@@ -145,6 +150,7 @@ func check_victory():
 			enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
+			russian_roulette(true)
 			
 			
 
@@ -153,10 +159,12 @@ func check_victory():
 			player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			player_text_reference.text = ""
+			reset_game()
 			
 			enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
+			reset_game()
 			
 	if enemy_hand_reference.bust and player_hand_reference.bust:
 		print("Empate")
@@ -164,10 +172,12 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
+		reset_game()
 		
 		enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
+		reset_game()
 			
 		
 func enemy_turn():
