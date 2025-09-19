@@ -8,6 +8,7 @@ var database_reference
 var player_text_reference
 var enemy_text_reference
 var table_limit
+var card_database_reference
 var initial
 var player_life
 var enemy_life
@@ -18,6 +19,7 @@ var bullets
 
 func _ready() -> void:
 	player_text_reference = $jogador_texto
+	card_database_reference = preload("res://scripts/cards/card_database.gd")
 	enemy_text_reference = $inimigo_texto
 	player_hand_reference = $hand
 	enemy_hand_reference = $enemy_hand
@@ -30,21 +32,16 @@ func _ready() -> void:
 	bullets = 1
 	initial_drag()
 
-func initial_drag():
-	
-	await get_tree().create_timer(1.5).timeout
-	for i in range((((table_limit-1)/10)*2)):
-		deck_reference.draw_card()
-		await get_tree().create_timer(0.5).timeout
-		player_turn = 1 - player_turn
+func initial_drag(): 
 	initial = 1
 
 func switch_turn():
-	await get_tree().create_timer(1.0).timeout
-	for i in range(enemy_hand_reference.player_hand.size()):
-		enemy_hand_reference.player_hand[i].get_node("card-sprite").texture = load(enemy_hand_reference.player_hand[i].image_path) 
-	player_turn = 0
-	enemy_turn()
+	check_victory()
+	if (player_turn or player_hand_reference.bust or player_hand_reference.stand) and not (enemy_hand_reference.bust or enemy_hand_reference.stand):
+		player_turn = 0
+		enemy_turn()
+	else:
+		player_turn = 1
 
 func reset_game():
 	if player_hand_reference:
@@ -103,85 +100,136 @@ func russian_roulette(target_player: bool = true):
 		reset_game()
 
 func check_victory():
-	if player_hand_reference.surrender:
+	if player_hand_reference.hand_sum > table_limit:
 		player_hand_reference.bust = 1
-		player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
-		await get_tree().create_timer(1.0).timeout
-		russian_roulette(true)
 		
-
-	if not player_hand_reference.stand and not player_hand_reference.bust:
-		if player_hand_reference.hand_sum > table_limit:
-			player_hand_reference.bust = 1
-			player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
+		player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		player_text_reference.text = ""
+		
+	if enemy_hand_reference.hand_sum > table_limit:
+		
+		enemy_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		enemy_text_reference.text = ""
+		
+		enemy_hand_reference.bust = 1
+	
+	if player_hand_reference.bust and not enemy_hand_reference.bust:
+		print("Inimigo ganhou")
+		
+		enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		enemy_text_reference.text = ""
+		
+	if enemy_hand_reference.bust and not player_hand_reference.bust:
+		print("Jogador ganhou")
+		
+		player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		player_text_reference.text = ""
+	
+			
+	
+	if player_hand_reference.stand and enemy_hand_reference.stand:
+		if player_hand_reference.hand_sum > enemy_hand_reference.hand_sum:
+			print("Jogador ganhou")
+			
+			player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			player_text_reference.text = ""
-			print("Jogador estourou")
-			switch_turn()
-			await get_tree().create_timer(1.0).timeout
-			russian_roulette(true)
+			
+		elif player_hand_reference.hand_sum < enemy_hand_reference.hand_sum:
+			print("Inimigo ganhou")
+			
+			enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
+			await get_tree().create_timer(1.5).timeout
+			enemy_text_reference.text = ""
+			
 			
 
-		if player_hand_reference.hand_sum == table_limit:
-			player_hand_reference.win = 1
-			await get_tree().create_timer(1.0).timeout
-			player_text_reference.text = "[wave amp=50 freq=7] Vitória! [/wave]"
-			russian_roulette(false)
-			
-
-	if not enemy_hand_reference.stand and not enemy_hand_reference.bust:
-		if enemy_hand_reference.hand_sum > table_limit:
-			enemy_hand_reference.bust = 1
-			await get_tree().create_timer(1.0).timeout
-			print("Deeler estourou. Vitória!")
-			russian_roulette(false)
-			
-
-		if enemy_hand_reference.hand_sum == table_limit:
-			enemy_hand_reference.win = 1
-			print("Deeler venceu.")
-			russian_roulette(true)
-			
-	
-	if player_hand_reference.win and enemy_hand_reference.win:
-		print("Empataram ganhando")
-		russian_roulette(true)
-		
-	else:
-		if player_hand_reference.win:
-			print("Jogador ganhou")
-			russian_roulette(false)
-			
-
-		elif enemy_hand_reference.win:
-			print("Deeler ganhou")
-			russian_roulette(true)
-			
-			
-	if player_hand_reference.bust and enemy_hand_reference.bust:
-		print("Empataram estourando")
-	await get_tree().create_timer(3.0).timeout
-	
-	if player_hand_reference.stand == 1 and enemy_hand_reference.stand == 1:
-		if player_hand_reference.hand_sum >= enemy_hand_reference.hand_sum:
-			player_text_reference.text = "[wave amp=50 freq=7] Vitória! [/wave]"
-			await get_tree().create_timer(1.0).timeout
-			russian_roulette(false)
-			
 		else:
-			player_text_reference.text = "[wave amp=50 freq=7] Derrota! [/wave]"
-			await get_tree().create_timer(1.0).timeout
-			russian_roulette(true)
+			print("Empate")
+			player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
+			await get_tree().create_timer(1.5).timeout
+			player_text_reference.text = ""
 			
-	
+			enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
+			await get_tree().create_timer(1.5).timeout
+			enemy_text_reference.text = ""
+			
+	if enemy_hand_reference.bust and player_hand_reference.bust:
+		print("Empate")
+		
+		player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		player_text_reference.text = ""
+		
+		enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		enemy_text_reference.text = ""
+			
+		
 func enemy_turn():
-	
-	if enemy_hand_reference.hand_sum <= 15:
-		deck_reference.draw_card()
-	else:
-		enemy_hand_reference.stand = 1
-		check_victory()
 
+	
+	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
+		if(player_hand_reference.bust):
+			enemy_hand_reference.stand= 1
+			enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+			await get_tree().create_timer(1.5).timeout
+			enemy_text_reference.text = ""
+			
+		elif(player_hand_reference.stand):
+			if(player_hand_reference.hand_sum<enemy_hand_reference.hand_sum):
+				enemy_hand_reference.stand=1
+				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+				await get_tree().create_timer(1.5).timeout
+				enemy_text_reference.text = ""
+				
+			elif(player_hand_reference.hand_sum >= enemy_hand_reference.hand_sum and not( enemy_hand_reference.hand_sum ==21)):
+				var count=0
+				for i in range(deck_reference.deck.size()):
+					if (enemy_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
+						count+=1
+				if count> 2*(deck_reference.deck.size()/3):
+						drag.play("pede_carta")
+						await get_tree().create_timer(1.5).timeout
+						drag.play("idle")
+						deck_reference.draw_card()
+				else:
+					enemy_hand_reference.stand=1
+					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+					await get_tree().create_timer(1.5).timeout
+					enemy_text_reference.text = ""
+		else:
+			var count=0
+			for i in range(deck_reference.deck.size()):
+				if (player_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
+					count+=1
+			if count< 2*(deck_reference.deck.size()/3):
+				enemy_hand_reference.stand=1
+				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+				await get_tree().create_timer(1.5).timeout
+				enemy_text_reference.text = ""
+			else:
+				count=0
+				for i in range(deck_reference.deck.size()):
+					if (enemy_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
+						count+=1
+				if count> 2*(deck_reference.deck.size()/3):
+						drag.play("pede_carta")
+						await get_tree().create_timer(1.5).timeout
+						drag.play("idle")
+						deck_reference.draw_card()
+				else: 
+					enemy_hand_reference.stand=1
+					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+					await get_tree().create_timer(1.5).timeout
+					enemy_text_reference.text = ""
+	else:
+		switch_turn()
+	
 func _on_play_again_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()

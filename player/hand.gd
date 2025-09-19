@@ -30,7 +30,7 @@ func _ready() -> void:
 	stand = 0
 	hand_sum = 0
 	center_screen_x = get_viewport().size.x/2
-	hand_y_position =  (5*(get_viewport().size.y/6)) + 115
+	hand_y_position =  (5*(get_viewport().size.y/6)) + 30
 
 func add_card_to_hand(card, speed):
 	if card not in player_hand:
@@ -43,11 +43,22 @@ func add_card_to_hand(card, speed):
 	hand_counter.text = str(hand_sum)
 		
 func update_hand_positions(speed):
-	for i in range(player_hand.size()):
-		var new_position = Vector2(calculate_hand_position(i), hand_y_position)
+	var total = player_hand.size()
+	var arc_radius = 350.0 # raio do arco (quanto maior, mais suave a curva)
+	var angle_step = deg_to_rad(15) # ângulo entre cada carta
+	var start_angle = -angle_step * (total - 1) / 2  # centraliza o arco
+
+	for i in range(total):
+		var angle = start_angle + i * angle_step
+		# posição em arco: desloca no X e no Y
+		var x = center_screen_x + sin(angle) * arc_radius
+		var y = hand_y_position - cos(angle) * arc_radius * 0.2 # 0.2 = achatamento vertical
+		
+		var new_position = Vector2(x, y)
 		var card = player_hand[i]
 		card.starter_position = new_position
-		animate_car_to_position(card, new_position,speed)
+		animate_car_to_position(card, new_position, speed)
+
 	
 func calculate_hand_position(i):
 	var total_width = (player_hand.size() - 1) * CARD_WIDTH
@@ -73,20 +84,22 @@ func reset_hand():
 	player_hand.clear()
 
 func _double_down():
-	print("Jogador dobrou a aposta")
-	player_text_reference.text = "[wave amp=50 freq=7] Dobrou [/wave]"
-	await get_tree().create_timer(1.5).timeout
-	player_text_reference.text = ""
-	double_down = 1
-	deck_reference.draw_card()
-	deeler_reference.check_victory()
-	deeler_reference.switch_turn()
-	
+	if not bust and not stand and not double_down and not surrender:
+		print("Jogador dobrou a aposta")
+		player_text_reference.text = "[wave amp=50 freq=7] Dobrou [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		player_text_reference.text = ""
+		double_down = 1
+		deck_reference.draw_card()
+		deeler_reference.check_victory()
+		deeler_reference.switch_turn()
+		
 func _surrender():
-	print("Jogador se rendeu")
-	player_text_reference.text = "[wave amp=50 freq=7] Rendeu [/wave]"
-	await get_tree().create_timer(1.5).timeout
-	player_text_reference.text = ""
-	surrender = 1
-	deeler_reference.check_victory()
-	deeler_reference.switch_turn()
+	if not bust and not stand and not double_down and not surrender:
+		print("Jogador se rendeu")
+		player_text_reference.text = "[wave amp=50 freq=7] Rendeu [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		player_text_reference.text = ""
+		surrender = 1
+		deeler_reference.check_victory()
+		deeler_reference.switch_turn()

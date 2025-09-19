@@ -1,64 +1,128 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnrxwm0ehctws"]
+[gd_scene load_steps=32 format=3 uid="uid://cnrxwm0ehctws"]
 
 [ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://player/hand.gd" id="2_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://bjihxbdnjy7km" path="res://assets/pedecarta1.svg" id="3_jbj1t"]
-[ext_resource type="Texture2D" uid="uid://cohtegebhroe6" path="res://assets/idle1.svg" id="4_muem4"]
-[ext_resource type="Texture2D" uid="uid://ir6iprjvix1k" path="res://assets/idle2.svg" id="5_dp3eg"]
-[ext_resource type="Texture2D" uid="uid://cp1f5jxg87xox" path="res://assets/pedecarta2.svg" id="6_0ld40"]
-[ext_resource type="Texture2D" uid="uid://d10nmm2y35ctd" path="res://assets/pedecarta3.svg" id="7_gqmmt"]
-[ext_resource type="Texture2D" uid="uid://diyr7djxxsthm" path="res://assets/pedecarta4.svg" id="8_yc10j"]
+[ext_resource type="Texture2D" uid="uid://dtw2cd3obpck2" path="res://assets/Captura de tela 2025-09-16 202647.png" id="3_yc10j"]
+[ext_resource type="Texture2D" uid="uid://dsd1wbd10gw8f" path="res://assets/idle3.png" id="4_yq6so"]
+[ext_resource type="Texture2D" uid="uid://bjohbo2swcaau" path="res://assets/idle1.png" id="5_fv21b"]
+[ext_resource type="Texture2D" uid="uid://bvj8vhldbgqn6" path="res://assets/idle2.png" id="6_tel4y"]
+[ext_resource type="Texture2D" uid="uid://d4eimqaarrred" path="res://assets/morte1.png" id="7_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://dalhkdtflm3tm" path="res://assets/morte2.png" id="8_yq6so"]
+[ext_resource type="Texture2D" uid="uid://dnr72wbhvq38b" path="res://assets/morte3.png" id="9_fv21b"]
 [ext_resource type="Script" uid="uid://dwwp1b3jwbstx" path="res://enemy/enemy_hand.gd" id="9_jscy8"]
 [ext_resource type="Script" uid="uid://bq4edt0fekpbu" path="res://scripts/cards/card_manager.gd" id="10_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://bhu0sx766e86c" path="res://assets/morte4.png" id="10_tel4y"]
+[ext_resource type="Texture2D" uid="uid://ciin6ma86w1pr" path="res://assets/morte5.png" id="11_qkpxi"]
 [ext_resource type="PackedScene" uid="uid://cy8xx5j57cnat" path="res://scenes/card_slot.tscn" id="11_y6deb"]
+[ext_resource type="Texture2D" uid="uid://c4i325isepdu6" path="res://assets/morte6.png" id="12_5q0nq"]
 [ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://scripts/cards/deck.gd" id="12_og1vs"]
-[ext_resource type="Texture2D" uid="uid://bu2wm770iir2h" path="res://assets/baralho.svg" id="13_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://dmdxdieonix0v" path="res://assets/baralho.svg" id="13_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://debckek26qgtk" path="res://assets/morte7.png" id="13_dgi5k"]
+[ext_resource type="Texture2D" uid="uid://c0qdqkhcvktu6" path="res://assets/morte8.png" id="14_j8jky"]
 [ext_resource type="Script" uid="uid://0rbk8pr45wec" path="res://scripts/input_manager.gd" id="14_vxglm"]
+[ext_resource type="Texture2D" uid="uid://oltum2ar24xg" path="res://assets/morte9.png" id="15_kmb1v"]
+[ext_resource type="Texture2D" uid="uid://kbg8cl56127x" path="res://assets/morte10.png" id="16_fuf3a"]
+[ext_resource type="Texture2D" uid="uid://c1vms6bxgqkeu" path="res://assets/morte11.png" id="17_pibwh"]
+[ext_resource type="Texture2D" uid="uid://b8ka7xy0uwnun" path="res://assets/morte12.png" id="18_c6pm6"]
+[ext_resource type="Texture2D" uid="uid://dqnvgxsps66oi" path="res://assets/morte13.png" id="19_5he1u"]
+[ext_resource type="Texture2D" uid="uid://c3kvvqnscr2yb" path="res://assets/pede_carta_g23.png" id="20_yq6so"]
+[ext_resource type="Texture2D" uid="uid://b1mk3b0pab35g" path="res://assets/pede_carta_g24.png" id="21_fv21b"]
+[ext_resource type="Texture2D" uid="uid://cvsm7s7wwwpuk" path="res://assets/pede_carta_g30.png" id="22_tel4y"]
+[ext_resource type="Texture2D" uid="uid://b36itevgffvm5" path="res://assets/pede_carta_g21.png" id="23_qkpxi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vivmo"]
 animations = [{
 "frames": [{
-"duration": 2.0,
-"texture": ExtResource("3_jbj1t")
+"duration": 1.0,
+"texture": ExtResource("4_yq6so")
 }, {
-"duration": 2.0,
-"texture": ExtResource("4_muem4")
-}, {
-"duration": 2.0,
-"texture": ExtResource("5_dp3eg")
+"duration": 1.5,
+"texture": ExtResource("5_fv21b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_muem4")
+"texture": ExtResource("6_tel4y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_jbj1t")
+"texture": ExtResource("6_tel4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fv21b")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2f3dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yq6so")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fv21b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tel4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_qkpxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5q0nq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dgi5k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_j8jky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kmb1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_fuf3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pibwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_c6pm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_5he1u")
+}],
+"loop": true,
+"name": &"morte",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.5,
-"texture": ExtResource("6_0ld40")
+"duration": 1.0,
+"texture": ExtResource("21_fv21b")
 }, {
-"duration": 0.5,
-"texture": ExtResource("7_gqmmt")
+"duration": 1.0,
+"texture": ExtResource("20_yq6so")
 }, {
-"duration": 0.5,
-"texture": ExtResource("8_yc10j")
+"duration": 1.0,
+"texture": ExtResource("22_tel4y")
 }, {
-"duration": 0.5,
-"texture": ExtResource("7_gqmmt")
+"duration": 1.41,
+"texture": ExtResource("23_qkpxi")
 }, {
-"duration": 0.5,
-"texture": ExtResource("6_0ld40")
+"duration": 1.0,
+"texture": ExtResource("22_tel4y")
 }, {
-"duration": 0.5,
-"texture": ExtResource("3_jbj1t")
+"duration": 1.0,
+"texture": ExtResource("20_yq6so")
 }],
 "loop": true,
 "name": &"pede_carta",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
@@ -85,10 +149,10 @@ text = "0"
 [node name="jogador_texto" type="RichTextLabel" parent="."]
 light_mask = 0
 texture_filter = 1
-offset_left = 184.0
-offset_top = 817.0
-offset_right = 346.0
-offset_bottom = 857.0
+offset_left = 2.0
+offset_top = 833.0
+offset_right = 164.0
+offset_bottom = 873.0
 scale = Vector2(4, 4.16)
 bbcode_enabled = true
 fit_content = true
@@ -96,14 +160,20 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="perspectiva_alt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(917, 569)
+scale = Vector2(1.4446563, 1.4446564)
+texture = ExtResource("3_yc10j")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -10
-position = Vector2(960, 523)
-scale = Vector2(0.584016, 0.584016)
+position = Vector2(977, -244.00002)
+scale = Vector2(1.4769466, 1.4769465)
 sprite_frames = SubResource("SpriteFrames_vivmo")
 animation = &"pede_carta"
 autoplay = "idle"
-frame_progress = 0.876106
+frame_progress = 0.81704456
 
 [node name="enemy_hand" type="Node2D" parent="."]
 script = ExtResource("9_jscy8")
@@ -125,7 +195,7 @@ position = Vector2(998, 713)
 scale = Vector2(1.31088, 1.68916)
 
 [node name="deck" type="Node2D" parent="."]
-position = Vector2(1341, 915)
+position = Vector2(1574.9999, 736.00006)
 rotation = -0.958186
 scale = Vector2(1.32912, 1.29982)
 script = ExtResource("12_og1vs")
@@ -133,10 +203,13 @@ script = ExtResource("12_og1vs")
 [node name="Sprite2D" type="Sprite2D" parent="deck"]
 position = Vector2(30.3576, -82.9386)
 rotation = 0.934077
-scale = Vector2(0.447027, 0.447027)
+scale = Vector2(0.31757292, 0.34807566)
 texture = ExtResource("13_2wyq8")
 
 [node name="Area2D" type="Area2D" parent="deck"]
+position = Vector2(-100.1752, -7.9374313)
+rotation = 0.71720684
+scale = Vector2(1.6771713, 1.746124)
 collision_layer = 4
 collision_mask = 4
 
@@ -151,10 +224,10 @@ script = ExtResource("14_vxglm")
 
 [node name="inimigo_texto" type="RichTextLabel" parent="."]
 texture_filter = 1
-offset_left = 185.0
-offset_top = 585.0
-offset_right = 347.0
-offset_bottom = 625.0
+offset_left = -4.0
+offset_top = 310.0
+offset_right = 158.0
+offset_bottom = 350.0
 scale = Vector2(4, 4.16)
 bbcode_enabled = true
 fit_content = true
