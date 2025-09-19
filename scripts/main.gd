@@ -110,10 +110,8 @@ func check_victory():
 			
 		
 func enemy_turn():
-	drag.play("pede_carta")
-	await get_tree().create_timer(1.5).timeout
-	drag.play("idle")
-	deck_reference.draw_card()
+
+	
 	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
 		if(player_hand_reference.bust):
 			enemy_hand_reference.stand= 1
@@ -137,6 +135,7 @@ func enemy_turn():
 						drag.play("pede_carta")
 						await get_tree().create_timer(1.5).timeout
 						drag.play("idle")
+						deck_reference.draw_card()
 				else:
 					enemy_hand_reference.stand=1
 					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
@@ -161,6 +160,7 @@ func enemy_turn():
 						drag.play("pede_carta")
 						await get_tree().create_timer(1.5).timeout
 						drag.play("idle")
+						deck_reference.draw_card()
 				else: 
 					enemy_hand_reference.stand=1
 					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
