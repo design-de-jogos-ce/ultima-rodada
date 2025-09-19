@@ -56,3 +56,11 @@ func remove_card_from_hand(card):
 	if card in player_hand:
 		player_hand.erase(card)
 		update_hand_positions(DEFAULT_SPEED)
+
+func reset_hand():
+	hand_sum = 0
+	bust = 0
+	win = 0
+	stand = 0
+	revel = 0
+	player_hand.clear()

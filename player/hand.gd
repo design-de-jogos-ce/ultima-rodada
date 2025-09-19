@@ -63,6 +63,15 @@ func remove_card_from_hand(card):
 		player_hand.erase(card)
 		update_hand_positions(DEFAULT_SPEED)
 
+func reset_hand():
+	hand_sum = 0
+	bust = 0
+	win = 0
+	stand = 0
+	double_down = 0
+	surrender = 0
+	player_hand.clear()
+
 func _double_down():
 	print("Jogador dobrou a aposta")
 	player_text_reference.text = "[wave amp=50 freq=7] Dobrou [/wave]"

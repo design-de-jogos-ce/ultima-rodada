@@ -55,3 +55,18 @@ func draw_card():
 		hand_reference.add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	if deeler_reference.initial:
 		deeler_reference.check_victory()
+
+
+func reset_deck():
+	deck = ["1_1","1_2","1_3","1_4","1_5","1_6","1_7",
+			"1_8","1_9","1_10","1_11","1_12","1_13", 
+			"2_1","2_2","2_3","2_4","2_5","2_6","2_7",
+			"2_8","2_9","2_10","2_11","2_12","2_13", 
+			"3_1","3_2","3_3","3_4","3_5","3_6","3_7",
+			"3_8","3_9","3_10","3_11","3_12","3_13", 
+			"4_1","4_2","4_3","4_4","4_5","4_6","4_7",
+			"4_8","4_9","4_10","4_11","4_12","4_13"
+			]
+	deck.shuffle()
+	$Area2D/CollisionShape2D.disabled = false
+	$Sprite2D.visible = true
