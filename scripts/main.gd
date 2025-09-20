@@ -10,6 +10,9 @@ var enemy_text_reference
 var table_limit
 var card_database_reference
 var initial
+var player_life
+var enemy_life
+var bullets
 
 @onready var drag := $AnimatedSprite2D
 @onready var endgame_ui := $endGameUI
@@ -24,6 +27,9 @@ func _ready() -> void:
 	initial = 0
 	table_limit = 21
 	player_turn = 1
+	player_life = 3
+	enemy_life = 5
+	bullets = 6
 	initial_drag()
 
 func initial_drag(): 
@@ -35,7 +41,63 @@ func switch_turn():
 		player_turn = 0
 		enemy_turn()
 	else:
-		player_turn =1
+		player_turn = 1
+
+func reset_game():
+	if player_hand_reference:
+		player_hand_reference.reset_hand()
+	if enemy_hand_reference:
+		enemy_hand_reference.reset_hand()
+	
+	player_turn = 1
+	initial = 0
+	deck_reference.reset_deck()
+	
+	if player_text_reference:
+		player_text_reference.text = ""
+	if enemy_text_reference:
+		enemy_text_reference.text = ""
+	
+	initial_drag()
+	
+func russian_roulette(target_player: bool = true):
+	var fire = randf() < (float(bullets) / 6.0)
+
+	if fire == true:
+		if target_player and player_life > 0:
+			player_life -= 1
+			player_text_reference.text = "[wave amp=50 freq=7] Você perdeu uma vida! [/wave]"
+			await get_tree().create_timer(1.5).timeout
+			player_text_reference.text = ""
+			if player_life == 0:
+				player_text_reference.text = "[wave amp=50 freq=7] Game Over! [/wave]"
+				await get_tree().create_timer(1.5).timeout
+				get_tree().paused = true
+				endgame_ui.show()
+				return
+			
+			reset_game()
+
+		elif not target_player and enemy_life > 0:
+			enemy_life -= 1
+			enemy_text_reference.text = "[wave amp=50 freq=7] Deeler perdeu uma vida! [/wave]"
+			await get_tree().create_timer(1.5).timeout
+			enemy_text_reference.text = ""
+			if enemy_life == 0:
+				enemy_text_reference.text = "[wave amp=50 freq=7] Deeler foi eliminado! [/wave]"
+				await get_tree().create_timer(1.5).timeout
+				get_tree().paused = true
+				endgame_ui.show()
+				return
+			
+			reset_game()
+	else:
+		if target_player:
+			player_text_reference.text = "[wave amp=50 freq=7] Você sobreviveu! [/wave]"
+		else:
+			enemy_text_reference.text = "[wave amp=50 freq=7] Deeler sobreviveu! [/wave]"
+		await get_tree().create_timer(1.5).timeout
+		reset_game()
 
 func check_victory():
 	if player_hand_reference.hand_sum > table_limit:
@@ -44,7 +106,8 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-
+		russian_roulette(true)
+		
 	if enemy_hand_reference.hand_sum > table_limit:
 
 		enemy_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
@@ -52,14 +115,16 @@ func check_victory():
 		enemy_text_reference.text = ""
 
 		enemy_hand_reference.bust = 1
-
+		russian_roulette(false)
+	
 	if player_hand_reference.bust and not enemy_hand_reference.bust:
 		print("Inimigo ganhou")
 		reset_hands()
 		enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
-
+		russian_roulette(true)
+		
 	if enemy_hand_reference.bust and not player_hand_reference.bust:
 		print("Jogador ganhou")
 		
@@ -68,7 +133,10 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-
+		russian_roulette(false)
+	
+			
+	
 	if player_hand_reference.stand and enemy_hand_reference.stand:
 		if player_hand_reference.hand_sum > enemy_hand_reference.hand_sum:
 			print("Jogador ganhou")
@@ -76,24 +144,29 @@ func check_victory():
 			player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			player_text_reference.text = ""
-
+			russian_roulette(false)
+			
 		elif player_hand_reference.hand_sum < enemy_hand_reference.hand_sum:
 			print("Inimigo ganhou")
 			reset_hands()
 			enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
-
+			russian_roulette(true)
+			
+			
 
 		else:
 			print("Empate")
 			player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			player_text_reference.text = ""
+			reset_game()
 
 			enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
+			reset_game()
 
 	if enemy_hand_reference.bust and player_hand_reference.bust:
 		print("Empate")
@@ -101,11 +174,13 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-
+		reset_game()
+		
 		enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
-
+		reset_game()
+			
 func enemy_turn():
 	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
 		if(player_hand_reference.bust):

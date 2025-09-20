@@ -74,6 +74,15 @@ func remove_card_from_hand(card):
 		player_hand.erase(card)
 		update_hand_positions(DEFAULT_SPEED)
 
+func reset_hand():
+	hand_sum = 0
+	bust = 0
+	win = 0
+	stand = 0
+	double_down = 0
+	surrender = 0
+	player_hand.clear()
+
 func _double_down():
 	if not bust and not stand and not double_down and not surrender:
 		print("Jogador dobrou a aposta")
