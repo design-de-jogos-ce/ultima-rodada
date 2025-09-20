@@ -49,11 +49,7 @@ func draw_card():
 	new_card.card_suit = card_databese_reference.CARDS[card_drawn][0]
 	new_card.card_value = card_databese_reference.CARDS[card_drawn][1]
 	if deeler_reference.player_turn == 0:
-		
 		enemy_hand.add_card_to_hand(new_card, CARD_DRAW_SPEED)
-		
-		
-		
 	else:
 		hand_reference.add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	if deeler_reference.initial:
