@@ -29,7 +29,7 @@ func _ready() -> void:
 	player_turn = 1
 	player_life = 3
 	enemy_life = 5
-	bullets = 1
+	bullets = 6
 	initial_drag()
 
 func initial_drag(): 
