@@ -43,7 +43,6 @@ func add_card_to_hand(card, speed):
 	hand_counter.text = str(hand_sum)
 	
 	
-	
 func bet_bullet():
 	var bullet = bullets[0]
 	if bullet in bullets:
@@ -61,14 +60,13 @@ func bet_bullet():
 
 func recive_bullet(bullet):
 	deeler_reference.bullets_in_game.erase(bullet)
-	bullets.append(bullet)
-	
-	
+	bullets.insert(0,bullet)
 	var offset_x = (bullets_num) * 45 + randf_range(-10, 10)
 	var offset_y = randf_range(-10, 10)
 	if bullets_num > 6:
 		offset_x = (bullets_num - 7) * 45 + randf_range(-10, 10)
 		offset_y = 50 + randf_range(-10, 10)
+		bullet.z_index = 4
 	bullet.position = Vector2(230, 380) + Vector2(offset_x, offset_y)
 	bullet.get_node("Area2D").collision_mask = 10
 	bullets_num+=1

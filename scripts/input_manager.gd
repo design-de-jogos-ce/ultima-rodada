@@ -73,7 +73,7 @@ func raycast_at_cursor():
 		elif result_collision_mask == COLLISION_MASK_BULLET:
 			var bullet = result[0].collider.get_parent()
 			if bullet and player_hand_reference.can_bet:
-				player_hand_reference.bet_bullet(bullet)
+				player_hand_reference.bet_bullet()
 
 func toggle_pause_menu():
 	if get_tree().paused:

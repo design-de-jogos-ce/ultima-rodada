@@ -38,8 +38,7 @@ func _ready() -> void:
 	player_turn = 1
 	initial_bullets()
 
-func drag(): 
-	initial = 1-initial
+
 
 func initial_bullets():
 	for i in range(enemy_hand_reference.bullets_num):
@@ -90,6 +89,7 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
+		russian_roulette(true)
 		pass_bullets(enemy_hand_reference)
 		return
 
@@ -99,6 +99,7 @@ func check_victory():
 		enemy_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
+		russian_roulette(false)
 		pass_bullets(player_hand_reference)
 		return
 
@@ -108,10 +109,8 @@ func check_victory():
 		enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
-		pass_bullets(enemy_hand_reference)
 		russian_roulette(true)
-		
-		
+		pass_bullets(enemy_hand_reference)
 		return
 
 	# --- Inimigo perde porque estourou ---
@@ -120,9 +119,8 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-		pass_bullets(player_hand_reference)
 		russian_roulette(false)
-		
+		pass_bullets(player_hand_reference)
 		return
 
 	# --- Ambos deram stand ---
@@ -132,9 +130,8 @@ func check_victory():
 			player_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			player_text_reference.text = ""
-			pass_bullets(player_hand_reference)
 			russian_roulette(false)
-			
+			pass_bullets(player_hand_reference)
 			return
 
 		elif player_hand_reference.hand_sum < enemy_hand_reference.hand_sum:
@@ -142,9 +139,8 @@ func check_victory():
 			enemy_text_reference.text = "[wave amp=50 freq=7] Ganhou [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
-			pass_bullets(enemy_hand_reference)
 			russian_roulette(true)
-			
+			pass_bullets(enemy_hand_reference)
 			return
 
 		else:
@@ -319,6 +315,7 @@ func reset_hands():
 	# Resetar textos
 	player_text_reference.text = ""
 	enemy_text_reference.text = ""
+	initial = 1 if player_hand_reference.bullets_num == 0 else 0
 
 	# Resetar turno
 	player_turn = 1
