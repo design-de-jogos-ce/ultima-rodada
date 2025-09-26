@@ -3,6 +3,7 @@ extends Node2D
 signal left_mouse_button_clicked
 signal left_mouse_button_released
 
+const COLLISION_MASK_BULLET = 8
 const COLLISION_MASK = 1
 const COLLISION_MASK_DACK = 4
 
@@ -58,15 +59,22 @@ func raycast_at_cursor():
 	parameters.position = get_global_mouse_position() 
 	parameters.collide_with_areas = true 
 	var result = space_state.intersect_point(parameters) 
+	
 	if result.size():
 		var result_collision_mask = result[0].collider.collision_mask
 		if result_collision_mask == COLLISION_MASK:
 			var card_found =  result[0].collider.get_parent() 
 			if card_found :
 				card_manager_reference.start_drag(card_found)
+				
 		elif result_collision_mask == COLLISION_MASK_DACK and deeler_reference.player_turn and not player_hand_reference.stand and deeler_reference.initial and not player_hand_reference.bust:
 			deck_reference.draw_card()
 			
+		elif result_collision_mask == COLLISION_MASK_BULLET:
+			var bullet = result[0].collider.get_parent()
+			if bullet and player_hand_reference.can_bet:
+				player_hand_reference.bet_bullet(bullet)
+
 func toggle_pause_menu():
 	if get_tree().paused:
 		get_tree().paused = false
