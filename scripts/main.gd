@@ -62,7 +62,7 @@ func initial_bullets():
 		var offset_x = i * 45 + randf_range(-10, 10)
 		var offset_y = randf_range(-10, 10) 
 		
-		bullet.position = Vector2(230, 850) + Vector2(offset_x, offset_y)
+		bullet.position = Vector2(230, 820) + Vector2(offset_x, offset_y)
 		
 		player_hand_reference.bullets.insert(0, bullet)
 		$".".add_child(bullet)

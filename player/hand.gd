@@ -83,7 +83,7 @@ func recive_bullet(bullet):
 		offset_x = (bullets_num - 7) * 45 + randf_range(-10, 10)
 		offset_y = 50 + randf_range(-10, 10)
 		bullet.z_index = 4
-	bullet.position = Vector2(230, 850) + Vector2(offset_x, offset_y)
+	bullet.position = Vector2(230, 820) + Vector2(offset_x, offset_y)
 	bullet.get_node("Area2D").collision_mask = 8
 	bullets_num+=1
 
