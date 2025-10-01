@@ -14,6 +14,10 @@ config/name="cartas de junho"
 run/main_scene="uid://wulf0m8edyi5"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+GameManager="*res://scripts/GameManager.gd"
+
 [display]
 
 window/size/viewport_width=1920

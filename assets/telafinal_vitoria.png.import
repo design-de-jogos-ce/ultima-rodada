@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckyc6g3jhgvr"
-path="res://.godot/imported/4_13.png-85fea80ab791e3dfc5bde9ad78112f07.ctex"
+uid="uid://bavf6yoqh0575"
+path="res://.godot/imported/telafinal_vitoria.png-02a236979e66493e3bed80681e0be666.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/4_13.png"
-dest_files=["res://.godot/imported/4_13.png-85fea80ab791e3dfc5bde9ad78112f07.ctex"]
+source_file="res://assets/telafinal_vitoria.png"
+dest_files=["res://.godot/imported/telafinal_vitoria.png-02a236979e66493e3bed80681e0be666.ctex"]
 
 [params]
 

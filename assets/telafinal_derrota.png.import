@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckyc6g3jhgvr"
-path="res://.godot/imported/4_13.png-85fea80ab791e3dfc5bde9ad78112f07.ctex"
+uid="uid://duee2ct36et83"
+path="res://.godot/imported/telafinal_derrota.png-51c7bafd4166393fcc75bc499713b1ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/4_13.png"
-dest_files=["res://.godot/imported/4_13.png-85fea80ab791e3dfc5bde9ad78112f07.ctex"]
+source_file="res://assets/telafinal_derrota.png"
+dest_files=["res://.godot/imported/telafinal_derrota.png-51c7bafd4166393fcc75bc499713b1ac.ctex"]
 
 [params]
 
