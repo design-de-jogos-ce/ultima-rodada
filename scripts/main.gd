@@ -20,7 +20,6 @@ var bullets_in_game = []
 var min_bet
 var initial
 
-
 @onready var animation := $AnimatedSprite2D
 @onready var endgame_ui := $endGameUI
 
@@ -160,7 +159,7 @@ func check_victory():
 		player_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		player_text_reference.text = ""
-
+		
 		enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
