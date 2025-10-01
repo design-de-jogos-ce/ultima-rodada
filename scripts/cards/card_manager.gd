@@ -20,7 +20,6 @@ func _ready() -> void:
 	$"../input_manager".connect("left_mouse_button_released",on_left_click_released)
 	
 func _process(delta: float) -> void:
-	#função chamada a cada frame
 	if card_dragged: #se estou clocando em uma carta, ela fica segurada e sendo carregada acompanhando o mouse
 		var mouse_pos = get_global_mouse_position()  
 		card_dragged.position= mouse_pos

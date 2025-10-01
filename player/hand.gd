@@ -14,12 +14,20 @@ var deck_reference
 var deeler_reference
 var double_down
 var win
+var bullets_bet
 var hand_sum
 var bust
+var life
+var can_bet
 var player_text_reference
+var bullets : Array = []
+var bullets_num : int = 6
 
 
 func _ready() -> void:
+	can_bet = 1
+	bullets_bet = 0
+	life = 3
 	win = 0
 	double_down=0
 	surrender=0
@@ -41,7 +49,44 @@ func add_card_to_hand(card, speed):
 	else:
 		animate_car_to_position(card,card.starter_position,speed)
 	hand_counter.text = str(hand_sum)
+	
+func bet_bullet():
+	var bullet = bullets[0]
+	if bullet in bullets:
+		bullets_bet+=1
+		bullets_num-=1
+		if(hand_sum>0) or bullets_bet==6:
+			can_bet=0
 		
+		if (bullets_bet == deeler_reference.min_bet) or bullets_num==0:
+			deeler_reference.initial = 1
+		
+		deeler_reference.bullets_in_game_num +=1
+		var offset_x = (deeler_reference.bullets_in_game_num) * 45 + randf_range(-10, 10)
+		var offset_y = randf_range(-10, 10) 
+		
+		bullet.position = Vector2(160, 580) + Vector2(offset_x, offset_y)
+
+		bullets.erase(bullet)
+		deeler_reference.bullets_in_game.append(bullet)
+		print(deeler_reference.bullets_in_game_num)
+
+
+
+func recive_bullet(bullet):
+	deeler_reference.bullets_in_game.erase(bullet)
+	bullets.insert(0,bullet)
+	var offset_x = (bullets_num) * 45 + randf_range(-10, 10)
+	var offset_y = randf_range(-10, 10)
+	bullet.z_index = 3
+	if bullets_num > 6:
+		offset_x = (bullets_num - 7) * 45 + randf_range(-10, 10)
+		offset_y = 50 + randf_range(-10, 10)
+		bullet.z_index = 4
+	bullet.position = Vector2(230, 820) + Vector2(offset_x, offset_y)
+	bullet.get_node("Area2D").collision_mask = 8
+	bullets_num+=1
+
 func update_hand_positions(speed):
 	var total = player_hand.size()
 	var arc_radius = 350.0 # raio do arco (quanto maior, mais suave a curva)
