@@ -205,7 +205,8 @@ func russian_roulette(target_player: bool = true):
 		reset_hands()
 		
 func enemy_turn():
-	enemy_hand_reference.bet_bullet()
+	if enemy_hand_reference.can_bet == 1:
+		enemy_hand_reference.bet_bullet()
 	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
 		if(player_hand_reference.bust):
 			enemy_hand_reference.stand= 1
@@ -310,6 +311,7 @@ func reset_hands():
 	enemy_hand_reference.bullets_bet = 0
 	enemy_hand_reference.revel = 0
 	enemy_hand_reference.hand_counter.text = "0"
+	enemy_hand_reference.can_bet = 1
 
 	# Resetar textos
 	player_text_reference.text = ""

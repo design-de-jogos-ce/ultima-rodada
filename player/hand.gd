@@ -21,7 +21,7 @@ var life
 var can_bet
 var player_text_reference
 var bullets : Array = []
-var bullets_num : int = 6
+var bullets_num : int = 3
 
 
 func _ready() -> void:
@@ -51,6 +51,8 @@ func add_card_to_hand(card, speed):
 	hand_counter.text = str(hand_sum)
 	
 func bet_bullet():
+	if bullets.size() == 0:
+		return
 	var bullet = bullets[0]
 	if bullet in bullets:
 		bullets_bet+=1
