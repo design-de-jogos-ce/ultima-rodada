@@ -18,10 +18,12 @@ var hand_sum
 var deeler_reference
 var stand
 var bullets : Array = []
-var bullets_num : int = 6
+var bullets_num : int = 3
+var can_bet
 
 func _ready() -> void:
 	bullets_bet=0
+	can_bet = 1
 	life = 3
 	deeler_reference =  $".."
 	win = 0
@@ -44,6 +46,8 @@ func add_card_to_hand(card, speed):
 	
 	
 func bet_bullet():
+	if bullets.size() == 0:
+		return
 	var bullet = bullets[0]
 	if bullet in bullets:
 		bullets_bet+=1
@@ -56,6 +60,7 @@ func bet_bullet():
 
 		bullets.erase(bullet)
 		deeler_reference.bullets_in_game.append(bullet)
+		can_bet=0
 		print(deeler_reference.bullets_in_game_num)
 
 func recive_bullet(bullet):
@@ -108,4 +113,5 @@ func reset_hand():
 	win = 0
 	stand = 0
 	revel = 0
+	can_bet = 1
 	player_hand.clear()
