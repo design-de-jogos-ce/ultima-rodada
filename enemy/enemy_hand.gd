@@ -48,33 +48,52 @@ func add_card_to_hand(card, speed):
 func bet_bullet():
 	if bullets.size() == 0:
 		return
-	var bullet = bullets[0]
-	if bullet in bullets:
-		bullets_bet+=1
-		bullets_num-=1
-		deeler_reference.bullets_in_game_num +=1
+	
+	var bet_amount = randi_range(1, bullets_num)
+	
+	for i in range(bet_amount):
+		if bullets.size() == 0:
+			break
+			
+		var random_index = randi() % bullets.size()
+		var bullet = bullets[random_index]
+		
+		bullets_bet += 1
+		bullets_num -= 1
+		deeler_reference.bullets_in_game_num += 1
+		
 		var offset_x = (deeler_reference.bullets_in_game_num) * 45 + randf_range(-10, 10)
 		var offset_y = randf_range(-10, 10) 
 		
 		bullet.position = Vector2(160, 580) + Vector2(offset_x, offset_y)
-
+		
 		bullets.erase(bullet)
 		deeler_reference.bullets_in_game.append(bullet)
-		can_bet=0
-		print(deeler_reference.bullets_in_game_num)
+	
+	can_bet = 0
+	print(deeler_reference.bullets_in_game_num)
 
 func recive_bullet(bullet):
-	deeler_reference.bullets_in_game.erase(bullet)
-	bullets.insert(0,bullet)
-	var offset_x = (bullets_num) * 45 + randf_range(-10, 10)
+	if bullet in deeler_reference.bullets_in_game:
+		deeler_reference.bullets_in_game.erase(bullet)
+		deeler_reference.bullets_in_game_num -= 1
+	
+	if bullet not in bullets:
+		bullets.append(bullet)
+		bullets_num += 1
+	
+	var offset_x = (bullets_num - 1) * 45 + randf_range(-10, 10)
 	var offset_y = randf_range(-10, 10)
+	
 	if bullets_num > 6:
 		offset_x = (bullets_num - 7) * 45 + randf_range(-10, 10)
 		offset_y = 50 + randf_range(-10, 10)
 		bullet.z_index = 4
+	else:
+		bullet.z_index = 0
+	
 	bullet.position = Vector2(230, 380) + Vector2(offset_x, offset_y)
 	bullet.get_node("Area2D").collision_mask = 10
-	bullets_num+=1
 
 func update_hand_positions(speed):
 	var total = player_hand.size()
