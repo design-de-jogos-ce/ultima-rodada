@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://kcjyergddbwl"
+path="res://.godot/imported/Elden Ring Nightreign - Menu Music (Official Title Screen).mp3-6b61d83eb40a095c5c04964813284d50.mp3str"
+
+[deps]
+
+source_file="res://sfx/musics/Elden Ring Nightreign - Menu Music (Official Title Screen).mp3"
+dest_files=["res://.godot/imported/Elden Ring Nightreign - Menu Music (Official Title Screen).mp3-6b61d83eb40a095c5c04964813284d50.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

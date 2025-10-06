@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var hand_counter := $"hand_counter"
+@onready var hand_counter := $"../HUD/hand_counter"
 
 const CARD_WIDTH = 150
 const DEFAULT_SPEED= 0.1
