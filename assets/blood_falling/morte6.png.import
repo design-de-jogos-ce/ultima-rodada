@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciin6ma86w1pr"
-path="res://.godot/imported/morte5.png-f947d0e77cffa60f01fb0f22ab4f1f0f.ctex"
+uid="uid://b0mbdal8bbmcy"
+path="res://.godot/imported/morte6.png-75a873675f23f8dd1cda650628e0cc9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/morte5.png"
-dest_files=["res://.godot/imported/morte5.png-f947d0e77cffa60f01fb0f22ab4f1f0f.ctex"]
+source_file="res://assets/blood_falling/morte6.png"
+dest_files=["res://.godot/imported/morte6.png-75a873675f23f8dd1cda650628e0cc9f.ctex"]
 
 [params]
 

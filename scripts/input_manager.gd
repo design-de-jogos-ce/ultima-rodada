@@ -13,7 +13,7 @@ var deeler_reference
 var player_hand_reference
 var player_text_reference
 
-@onready var endgame_ui := $"../endGameUI"
+@onready var pause_ui := $"../PauseUI"
 
 func _ready() -> void:
 	player_hand_reference = $"../hand"
@@ -78,7 +78,7 @@ func raycast_at_cursor():
 func toggle_pause_menu():
 	if get_tree().paused:
 		get_tree().paused = false
-		endgame_ui.hide()
+		pause_ui.hide()
 	else:
 		get_tree().paused = true
-		endgame_ui.show()
+		pause_ui.show()

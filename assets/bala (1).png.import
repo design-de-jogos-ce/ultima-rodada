@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oltum2ar24xg"
-path="res://.godot/imported/morte9.png-808a82596964cfbdec78eabfdc9f00d1.ctex"
+uid="uid://bfkvtwwmwyslk"
+path="res://.godot/imported/bala (1).png-edf427b193a96d3bac44221d25749dad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/morte9.png"
-dest_files=["res://.godot/imported/morte9.png-808a82596964cfbdec78eabfdc9f00d1.ctex"]
+source_file="res://assets/bala (1).png"
+dest_files=["res://.godot/imported/bala (1).png-edf427b193a96d3bac44221d25749dad.ctex"]
 
 [params]
 

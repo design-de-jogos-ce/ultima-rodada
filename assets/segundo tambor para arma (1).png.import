@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4eimqaarrred"
-path="res://.godot/imported/morte1.png-ab3f4c0f207da33dcd7eab31fb457176.ctex"
+uid="uid://bo54bwxgu64cw"
+path="res://.godot/imported/segundo tambor para arma (1).png-171d7ddec8fb764c4df8cd40df3ec594.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/morte1.png"
-dest_files=["res://.godot/imported/morte1.png-ab3f4c0f207da33dcd7eab31fb457176.ctex"]
+source_file="res://assets/segundo tambor para arma (1).png"
+dest_files=["res://.godot/imported/segundo tambor para arma (1).png-171d7ddec8fb764c4df8cd40df3ec594.ctex"]
 
 [params]
 

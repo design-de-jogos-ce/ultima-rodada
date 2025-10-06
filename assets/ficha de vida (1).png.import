@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1vms6bxgqkeu"
-path="res://.godot/imported/morte11.png-4d6f13da5aa5ec30466061fd2b88c348.ctex"
+uid="uid://4qoeebth8n4f"
+path="res://.godot/imported/ficha de vida (1).png-e7f1554976f45cfc4240a88f59503463.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/morte11.png"
-dest_files=["res://.godot/imported/morte11.png-4d6f13da5aa5ec30466061fd2b88c348.ctex"]
+source_file="res://assets/ficha de vida (1).png"
+dest_files=["res://.godot/imported/ficha de vida (1).png-e7f1554976f45cfc4240a88f59503463.ctex"]
 
 [params]
 

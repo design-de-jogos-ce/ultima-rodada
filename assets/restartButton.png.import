@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dalhkdtflm3tm"
-path="res://.godot/imported/morte2.png-71ecd2f4952d2c49c43dfffe356e0d14.ctex"
+uid="uid://dt7imnnvjeg2c"
+path="res://.godot/imported/restartButton.png-a1e4153ad712afcc363a20a51d72c7b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/morte2.png"
-dest_files=["res://.godot/imported/morte2.png-71ecd2f4952d2c49c43dfffe356e0d14.ctex"]
+source_file="res://assets/restartButton.png"
+dest_files=["res://.godot/imported/restartButton.png-a1e4153ad712afcc363a20a51d72c7b7.ctex"]
 
 [params]
 
