@@ -2,10 +2,6 @@ extends Node
 
 const BULLET_PATH = "res://scenes/bullet.tscn"
 
-#terminar a aposta
-
-
-
 var player_turn
 var deck_reference
 var enemy_hand_reference
@@ -21,7 +17,11 @@ var min_bet
 var initial
 
 @onready var animation := $AnimatedSprite2D
-@onready var endgame_ui := $endGameUI
+@onready var endgame_ui := $PauseUI
+@onready var enemy_life := $'HUD/enemyLife'
+@onready var player_life := $'HUD/playerLife'
+@onready var blood_falling := $bloodFalling
+@onready var bullet_sound := $zuadaDeBala
 
 func _ready() -> void:
 	min_bet = 1
@@ -36,8 +36,6 @@ func _ready() -> void:
 	table_limit = 21
 	player_turn = 1
 	initial_bullets()
-
-
 
 func initial_bullets():
 	for i in range(enemy_hand_reference.bullets_num):
@@ -169,16 +167,27 @@ func russian_roulette(target_player: bool = true):
 	var fire = randf() < (float(bullets_in_game_num) / 6.0)
 
 	if fire == true:
+		bullet_sound.play()
+		bullet_sound.play()
+		bullet_sound.play()
+		bullet_sound.play()
+		bullet_sound.play()
+		bullet_sound.play()
 		if target_player and player_hand_reference.life > 0:
 			player_hand_reference.life -= 1
 			player_text_reference.text = "[wave amp=50 freq=7] Você perdeu uma vida! [/wave]"
 			await get_tree().create_timer(1.5).timeout
+			update_player_life_ui()
 			player_text_reference.text = ""
 			if player_hand_reference.life == 0:
 				player_text_reference.text = "[wave amp=50 freq=7] Game Over! [/wave]"
 				await get_tree().create_timer(1.5).timeout
-				get_tree().paused = true
-				endgame_ui.show()
+				UiActions.game_status = "defeat!"
+				blood_falling.show()
+				blood_falling.play("blood_falling")
+				await blood_falling.animation_finished
+				#get_tree().paused = true
+				get_tree().change_scene_to_file("res://scenes/EndGame.tscn")
 				return
 	
 			reset_hands()
@@ -187,12 +196,17 @@ func russian_roulette(target_player: bool = true):
 			enemy_hand_reference.life -= 1
 			enemy_text_reference.text = "[wave amp=50 freq=7] Deeler perdeu uma vida! [/wave]"
 			await get_tree().create_timer(1.5).timeout
+			update_enemy_life_ui()
 			enemy_text_reference.text = ""
 			if enemy_hand_reference.life == 0:
 				enemy_text_reference.text = "[wave amp=50 freq=7] Deeler foi eliminado! [/wave]"
 				await get_tree().create_timer(1.5).timeout
-				get_tree().paused = true
-				endgame_ui.show()
+				UiActions.game_status = "victory!"
+				blood_falling.show()
+				blood_falling.play("blood_falling")
+				await blood_falling.animation_finished
+				#get_tree().paused = true
+				get_tree().change_scene_to_file("res://scenes/EndGame.tscn")
 				return
 			
 			reset_hands()
@@ -268,14 +282,6 @@ func enemy_turn():
 					enemy_text_reference.text = ""
 					switch_turn()
 
-func _on_play_again_pressed():
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-	
-func _on_return_to_menu_pressed():
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	
 func reset_hands():
 	deck_reference.deck = ["1_1","1_2","1_3","1_4","1_5","1_6","1_7",
 			"1_8","1_9","1_10","1_11","1_12","1_13", 
@@ -286,6 +292,7 @@ func reset_hands():
 			"4_1","4_2","4_3","4_4","4_5","4_6","4_7",
 			"4_8","4_9","4_10","4_11","4_12","4_13"
 			]
+	deck_reference.deck.shuffle()
 	for card in player_hand_reference.player_hand:
 		if is_instance_valid(card):
 			card.queue_free()
@@ -320,3 +327,63 @@ func reset_hands():
 
 	# Resetar turno
 	player_turn = 1
+
+func _on_play_again_pressed():
+	get_tree().paused = false
+	blood_falling.show()
+	blood_falling.play("blood_falling")
+	await blood_falling.animation_finished
+	UiActions._on_play_again_pressed()
+	
+func _on_return_to_menu_pressed():
+	get_tree().paused = false
+	blood_falling.show()
+	blood_falling.play("blood_falling")
+	await blood_falling.animation_finished
+	UiActions._on_return_to_menu_pressed()
+
+func update_player_life_ui():
+	var life_chips = $'HUD/playerLife'.get_children()
+	var current_lives = life_chips.size()
+	var player_current_lives = player_hand_reference.life
+	if current_lives > player_current_lives:
+		var last_chip = life_chips.back()
+		if is_instance_valid(last_chip):
+			last_chip.queue_free()
+
+func update_enemy_life_ui():
+	var life_chips = $'HUD/enemyLife'.get_children()
+	var current_lives = life_chips.size()
+	var player_current_lives = player_hand_reference.life
+	if current_lives > player_current_lives:
+		var last_chip = life_chips.back()
+		if is_instance_valid(last_chip):
+			last_chip.queue_free()
+
+#Funções dos botões de debug
+func _on_trigger_win_pressed():
+	get_tree().paused = false
+	player_text_reference.text = "[wave amp=50 freq=7] Game Over! [/wave]"
+	await get_tree().create_timer(1.5).timeout
+	UiActions.game_status = "victory!"
+	blood_falling.show()
+	blood_falling.play("blood_falling")
+	await blood_falling.animation_finished
+	#get_tree().paused = true
+	get_tree().change_scene_to_file("res://scenes/EndGame.tscn")
+	return
+func _on_trigger_lose_pressed():
+	get_tree().paused = false
+	enemy_text_reference.text = "[wave amp=50 freq=7] Deeler foi eliminado! [/wave]"
+	await get_tree().create_timer(1.5).timeout
+	UiActions.game_status = "defeat!"
+	blood_falling.show()
+	blood_falling.play("blood_falling")
+	await blood_falling.animation_finished
+	#get_tree().paused = true
+	get_tree().change_scene_to_file("res://scenes/EndGame.tscn")
+	return
+func _on_set_hp_pressed():
+	player_hand_reference.life = 1
+func _on_set_deeler_hp_pressed():
+	enemy_hand_reference.life = 1

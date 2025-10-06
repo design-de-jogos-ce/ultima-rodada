@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var hand_counter := $"enemy_counter"
+@onready var hand_counter := $"../HUD/enemy_counter"
 
 const CARD_WIDTH = 70
 const DEFAULT_SPEED= 0.1
@@ -24,7 +24,7 @@ var can_bet
 func _ready() -> void:
 	bullets_bet=0
 	can_bet = 1
-	life = 3
+	life = 6
 	deeler_reference =  $".."
 	win = 0
 	revel = 0
