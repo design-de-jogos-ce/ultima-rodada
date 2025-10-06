@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqh7pomblcuhm"
-path="res://.godot/imported/1_4.png-0e92b2f62fb14ff21d7c9a883801fd13.ctex"
+uid="uid://dwfvra3nm3gph"
+path="res://.godot/imported/arma jogo de roberto.png-4d67f92c59f43acd09ac40e018cbb7ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/1_4.png"
-dest_files=["res://.godot/imported/1_4.png-0e92b2f62fb14ff21d7c9a883801fd13.ctex"]
+source_file="res://arma jogo de roberto.png"
+dest_files=["res://.godot/imported/arma jogo de roberto.png-4d67f92c59f43acd09ac40e018cbb7ac.ctex"]
 
 [params]
 
