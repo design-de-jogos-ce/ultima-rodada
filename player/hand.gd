@@ -42,7 +42,9 @@ func _ready() -> void:
 
 func add_card_to_hand(card, speed):
 	if card not in player_hand:
-		
+		if(card.card_value == 11):
+			if hand_sum+11>21:
+				card.card_value = 1
 		player_hand.insert(0,card)
 		hand_sum += card.card_value
 		
@@ -92,15 +94,14 @@ func recive_bullet(bullet):
 
 func update_hand_positions(speed):
 	var total = player_hand.size()
-	var arc_radius = 350.0 # raio do arco (quanto maior, mais suave a curva)
-	var angle_step = deg_to_rad(15) # ângulo entre cada carta
-	var start_angle = -angle_step * (total - 1) / 2  # centraliza o arco
+	var arc_radius = 350.0 
+	var angle_step = deg_to_rad(15)
+	var start_angle = -angle_step * (total - 1) / 2  
 
 	for i in range(total):
 		var angle = start_angle + i * angle_step
-		# posição em arco: desloca no X e no Y
 		var x = center_screen_x + sin(angle) * arc_radius
-		var y = hand_y_position - cos(angle) * arc_radius * 0.2 # 0.2 = achatamento vertical
+		var y = hand_y_position - cos(angle) * arc_radius * 0.2 
 		
 		var new_position = Vector2(x, y)
 		var card = player_hand[i]

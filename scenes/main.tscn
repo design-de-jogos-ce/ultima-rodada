@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cnrxwm0ehctws"]
+[gd_scene load_steps=38 format=4 uid="uid://cnrxwm0ehctws"]
 
 [ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://player/hand.gd" id="2_jkv2x"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bq4edt0fekpbu" path="res://scripts/cards/card_manager.gd" id="10_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://cy8xx5j57cnat" path="res://scenes/card_slot.tscn" id="11_y6deb"]
 [ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://scripts/cards/deck.gd" id="12_og1vs"]
-[ext_resource type="Texture2D" uid="uid://dmdxdieonix0v" path="res://assets/baralho.svg" id="13_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://bu2wm770iir2h" path="res://assets/baralho.svg" id="13_2wyq8"]
 [ext_resource type="Script" uid="uid://0rbk8pr45wec" path="res://scripts/input_manager.gd" id="14_vxglm"]
 [ext_resource type="Texture2D" uid="uid://c3kvvqnscr2yb" path="res://assets/pede_carta_g23.png" id="20_yq6so"]
 [ext_resource type="Texture2D" uid="uid://b1mk3b0pab35g" path="res://assets/pede_carta_g24.png" id="21_fv21b"]
@@ -129,7 +129,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(47.57177, 47.95471)
+size = Vector2(34.809784, 45.269115)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkpxi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1v6qk"]
 animations = [{
@@ -233,7 +235,7 @@ script = ExtResource("12_og1vs")
 [node name="Sprite2D" type="Sprite2D" parent="deck"]
 position = Vector2(30.3576, -82.9386)
 rotation = 0.934077
-scale = Vector2(0.31757292, 0.34807566)
+scale = Vector2(0.6, 0.656)
 texture = ExtResource("13_2wyq8")
 
 [node name="Area2D" type="Area2D" parent="deck"]
@@ -244,9 +246,9 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="deck/Area2D"]
-position = Vector2(25.691345, -83.98505)
-rotation = 2.5315487
-scale = Vector2(1.0136033, -1.213772)
+position = Vector2(27.17871, -83.52542)
+rotation = 1.7970409
+scale = Vector2(1.0136032, -1.213772)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="input_manager" type="Node2D" parent="."]
@@ -422,6 +424,13 @@ position = Vector2(939.99994, 683)
 rotation = -0.4886922
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("32_vchkt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HUD"]
+position = Vector2(931, 682)
+rotation = -0.46378306
+scale = Vector2(1.4801952, 1.4801954)
+sprite_frames = SubResource("SpriteFrames_qkpxi")
+frame_progress = 0.36850056
 
 [node name="bloodFalling" type="AnimatedSprite2D" parent="."]
 visible = false
