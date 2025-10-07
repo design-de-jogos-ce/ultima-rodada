@@ -2,6 +2,8 @@ extends Node2D
 
 const CARD_PATH = "res://scenes/card.tscn"
 const CARD_DRAW_SPEED = 0.2
+const PROB_HABILITY = 1# 50%
+
 
 var deck = ["1_1","1_2","1_3","1_4","1_5","1_6","1_7",
 			"1_8","1_9","1_10","1_11","1_12","1_13", 
@@ -19,9 +21,11 @@ var deeler_reference
 var animation_reference
 var hand_y_position
 var back
+var powers_reference
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	powers_reference = $powers
 	hand_reference=$"../hand"
 	animation_reference = $"../AnimatedSprite2D"
 	enemy_hand = $"../enemy_hand"
@@ -30,27 +34,37 @@ func _ready() -> void:
 	hand_y_position = (5*(get_viewport().size.y/6)) + 50
 	card_databese_reference = preload("res://scripts/cards/card_database.gd")
 	back = str("res://assets/verso.png")
-
+	
 
 func draw_card():
+	randomize() 
 	var card_drawn = deck[0]
 	deck.erase(card_drawn)
-	
 	if deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
 		$Sprite2D.visible = false
-
+	
 	var card_scene = preload(CARD_PATH)
 	var new_card = card_scene.instantiate()
 	new_card.image_path = str("res://assets/"+card_drawn+".png")
-	new_card.get_node("card-sprite").texture = load(new_card.image_path) 
 	$"../card-manager".add_child(new_card)
+	if (randf_range(0, 1)<PROB_HABILITY):
+		new_card.power = randi_range(1,new_card.powers_reference.NUM_POWERS)
+		print("essa carta é especial")
+		new_card.powers_reference.player_hand_reference = hand_reference
+		new_card.powers_reference.enemy_hand_reference = enemy_hand
+		
+	#	new_card.image_path = str("res://assets/"+card_drawn+"_black.png")
+	
+	new_card.get_node("card-sprite").texture = load(new_card.image_path) 
 	new_card.name = "Card"
 	new_card.card_suit = card_databese_reference.CARDS[card_drawn][0]
 	new_card.card_value = card_databese_reference.CARDS[card_drawn][1]
 	if deeler_reference.player_turn == 0:
+		new_card.owner_reference = enemy_hand
 		enemy_hand.add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	else:
+		new_card.owner_reference = hand_reference
 		hand_reference.add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	deeler_reference.switch_turn()
 

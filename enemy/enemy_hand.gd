@@ -124,6 +124,7 @@ func animate_car_to_position(card, new_position,speed):
 func remove_card_from_hand(card):
 	if card in player_hand:
 		player_hand.erase(card)
+		hand_sum -= card.card_value
 		update_hand_positions(DEFAULT_SPEED)
 
 func reset_hand():

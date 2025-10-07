@@ -47,7 +47,7 @@ func initial_bullets():
 		var offset_y = randf_range(-10, 10) 
 		
 		bullet.position = Vector2(230, 380) + Vector2(offset_x, offset_y)
-		
+			
 		enemy_hand_reference.bullets.insert(0, bullet)
 		$".".add_child(bullet)
 		
@@ -66,6 +66,9 @@ func initial_bullets():
 		
 
 func switch_turn():
+	for i in range(player_hand_reference.player_hand.size()):
+		player_hand_reference.player_hand[i].activate_power()
+
 	check_victory()
 	if (player_turn or player_hand_reference.bust or player_hand_reference.stand) and not (enemy_hand_reference.bust or enemy_hand_reference.stand):
 		player_turn = 0

@@ -1,29 +1,16 @@
-[gd_scene load_steps=50 format=4 uid="uid://cnrxwm0ehctws"]
+[gd_scene load_steps=37 format=4 uid="uid://cnrxwm0ehctws"]
 
 [ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://player/hand.gd" id="2_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://dsd1wbd10gw8f" path="res://assets/idle3.png" id="4_yq6so"]
 [ext_resource type="Texture2D" uid="uid://bjohbo2swcaau" path="res://assets/idle1.png" id="5_fv21b"]
 [ext_resource type="Texture2D" uid="uid://bvj8vhldbgqn6" path="res://assets/idle2.png" id="6_tel4y"]
-[ext_resource type="Texture2D" path="res://assets/morte1.png" id="7_2f3dj"]
-[ext_resource type="Texture2D" path="res://assets/morte2.png" id="8_yq6so"]
-[ext_resource type="Texture2D" path="res://assets/morte3.png" id="9_fv21b"]
 [ext_resource type="Script" uid="uid://dwwp1b3jwbstx" path="res://enemy/enemy_hand.gd" id="9_jscy8"]
 [ext_resource type="Script" uid="uid://bq4edt0fekpbu" path="res://scripts/cards/card_manager.gd" id="10_pm3ni"]
-[ext_resource type="Texture2D" path="res://assets/morte4.png" id="10_tel4y"]
-[ext_resource type="Texture2D" path="res://assets/morte5.png" id="11_qkpxi"]
 [ext_resource type="PackedScene" uid="uid://cy8xx5j57cnat" path="res://scenes/card_slot.tscn" id="11_y6deb"]
-[ext_resource type="Texture2D" path="res://assets/morte6.png" id="12_5q0nq"]
 [ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://scripts/cards/deck.gd" id="12_og1vs"]
 [ext_resource type="Texture2D" uid="uid://dmdxdieonix0v" path="res://assets/baralho.svg" id="13_2wyq8"]
-[ext_resource type="Texture2D" path="res://assets/morte7.png" id="13_dgi5k"]
-[ext_resource type="Texture2D" path="res://assets/morte8.png" id="14_j8jky"]
 [ext_resource type="Script" uid="uid://0rbk8pr45wec" path="res://scripts/input_manager.gd" id="14_vxglm"]
-[ext_resource type="Texture2D" path="res://assets/morte9.png" id="15_kmb1v"]
-[ext_resource type="Texture2D" path="res://assets/morte10.png" id="16_fuf3a"]
-[ext_resource type="Texture2D" path="res://assets/morte11.png" id="17_pibwh"]
-[ext_resource type="Texture2D" path="res://assets/morte12.png" id="18_c6pm6"]
-[ext_resource type="Texture2D" path="res://assets/morte13.png" id="19_5he1u"]
 [ext_resource type="Texture2D" uid="uid://c3kvvqnscr2yb" path="res://assets/pede_carta_g23.png" id="20_yq6so"]
 [ext_resource type="Texture2D" uid="uid://b1mk3b0pab35g" path="res://assets/pede_carta_g24.png" id="21_fv21b"]
 [ext_resource type="Texture2D" uid="uid://cvsm7s7wwwpuk" path="res://assets/pede_carta_g30.png" id="22_tel4y"]
@@ -70,43 +57,43 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_2f3dj")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_yq6so")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_fv21b")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_tel4y")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_qkpxi")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_5q0nq")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_dgi5k")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_j8jky")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_kmb1v")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_fuf3a")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_pibwh")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_c6pm6")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_5he1u")
+"texture": null
 }],
 "loop": true,
 "name": &"morte",
