@@ -1,0 +1,117 @@
+[gd_scene load_steps=20 format=3 uid="uid://0ynt7rppumqm"]
+
+[ext_resource type="Texture2D" uid="uid://bkr3jripwyunp" path="res://assets/telafinal_vitoria.png" id="1_3w24k"]
+[ext_resource type="Script" uid="uid://8sq8d2jd58ur" path="res://scripts/end_game.gd" id="1_hw18e"]
+[ext_resource type="Texture2D" uid="uid://cisi4bt1eaune" path="res://assets/telafinal_derrota.png" id="2_hw18e"]
+[ext_resource type="Texture2D" uid="uid://d0a3s34csgu7d" path="res://assets/blood_falling/morte1.png" id="4_avfek"]
+[ext_resource type="Texture2D" uid="uid://cir6jcniegsn" path="res://assets/blood_falling/morte2.png" id="5_e3u7f"]
+[ext_resource type="Texture2D" uid="uid://bta8do6tljjgq" path="res://assets/blood_falling/morte3.png" id="6_d3yt3"]
+[ext_resource type="Texture2D" uid="uid://bl2y7fvvvkbwn" path="res://assets/blood_falling/morte4.png" id="7_tvrue"]
+[ext_resource type="Texture2D" uid="uid://60qmllkg5wge" path="res://assets/blood_falling/morte5.png" id="8_ovxqo"]
+[ext_resource type="Texture2D" uid="uid://b0mbdal8bbmcy" path="res://assets/blood_falling/morte6.png" id="9_pym2l"]
+[ext_resource type="Texture2D" uid="uid://cblyk5qus5b1" path="res://assets/blood_falling/morte7.png" id="10_pueqj"]
+[ext_resource type="Texture2D" uid="uid://b8qonjjsn1018" path="res://assets/blood_falling/morte8.png" id="11_5aiqj"]
+[ext_resource type="Texture2D" uid="uid://dhmbk6deqan3h" path="res://assets/blood_falling/morte9.png" id="12_ya4vh"]
+[ext_resource type="Texture2D" uid="uid://ltrpjlxl8t0u" path="res://assets/blood_falling/morte10.png" id="13_yo7g3"]
+[ext_resource type="Texture2D" uid="uid://bbwhwbq3e4cur" path="res://assets/blood_falling/morte11.png" id="14_jtu10"]
+[ext_resource type="Texture2D" uid="uid://bja3xxf8i24ew" path="res://assets/blood_falling/morte12.png" id="15_ffggd"]
+[ext_resource type="Texture2D" uid="uid://cda56nw0s2axp" path="res://assets/blood_falling/morte13.png" id="16_v0omx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hw18e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ho1j5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rn8i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_avfek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e3u7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_d3yt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tvrue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ovxqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pym2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pueqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5aiqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ya4vh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_yo7g3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jtu10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ffggd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_v0omx")
+}],
+"loop": false,
+"name": &"blood_falling",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hw18e")
+
+[node name="telaVitoria" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1014, 626)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("1_3w24k")
+
+[node name="telaDerrota" type="Sprite2D" parent="."]
+position = Vector2(1014, 626)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("2_hw18e")
+
+[node name="reiniciarPartida" type="Button" parent="."]
+layout_mode = 0
+offset_left = 587.0
+offset_top = 723.0
+offset_right = 912.0
+offset_bottom = 863.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_hw18e")
+
+[node name="retornarMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 724.0
+offset_right = 1344.0
+offset_bottom = 864.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ho1j5")
+
+[node name="bloodFalling" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 100
+position = Vector2(959.99994, 539.99994)
+scale = Vector2(0.71829396, 0.55987555)
+sprite_frames = SubResource("SpriteFrames_0rn8i")
+animation = &"blood_falling"
+
+[connection signal="pressed" from="reiniciarPartida" to="." method="_on_reiniciar_partida_pressed"]
+[connection signal="pressed" from="retornarMenu" to="." method="_on_retornar_menu_pressed"]
