@@ -84,8 +84,7 @@ func pass_bullets(current_player):
 	bullets_in_game_num=0   
 	
 func check_victory():
-	if player_hand_reference.bust or enemy_hand_reference.bust:
-		return
+
 	if player_hand_reference.hand_sum > table_limit and not player_hand_reference.bust:
 		player_hand_reference.bust = 1
 		player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
@@ -233,6 +232,8 @@ func russian_roulette(target_player: bool = true):
 		reset_hands()
 	
 func enemy_turn():
+	if player_hand_reference.bust:
+		return
 	if enemy_hand_reference.can_bet == 1:
 		enemy_hand_reference.bet_bullet()
 	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
