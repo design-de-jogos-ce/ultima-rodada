@@ -84,6 +84,8 @@ func pass_bullets(current_player):
 	bullets_in_game_num=0   
 	
 func check_victory():
+	if player_hand_reference.bust or enemy_hand_reference.bust:
+		return
 	if player_hand_reference.hand_sum > table_limit and not player_hand_reference.bust:
 		player_hand_reference.bust = 1
 		player_text_reference.text = "[wave amp=50 freq=7] Estourou [/wave]"
@@ -168,7 +170,12 @@ func check_victory():
 
 func russian_roulette(target_player: bool = true):
 	var fire = randf() < (float(bullets_in_game_num) / 6.0)
-
+	$ColorRect.visible = true
+	$AnimatedSprite2D2.visible = true
+	$AnimatedSprite2D2.play("default")
+	await get_tree().create_timer(0.8).timeout
+	$ColorRect.visible = false
+	$AnimatedSprite2D2.visible = false
 	if fire == true:
 		bullet_sound.play()
 		bullet_sound.play()
@@ -178,7 +185,11 @@ func russian_roulette(target_player: bool = true):
 		bullet_sound.play()
 		if target_player and player_hand_reference.life > 0:
 			player_hand_reference.life -= 1
+			player_text_reference.z_index = 10
 			player_text_reference.text = "[wave amp=50 freq=7] Você perdeu uma vida! [/wave]"
+			player_text_reference.z_index = -1
+			
+			
 			await get_tree().create_timer(1.5).timeout
 			update_player_life_ui()
 			player_text_reference.text = ""
@@ -220,7 +231,7 @@ func russian_roulette(target_player: bool = true):
 			enemy_text_reference.text = "[wave amp=50 freq=7] Deeler sobreviveu! [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		reset_hands()
-		
+	
 func enemy_turn():
 	if enemy_hand_reference.can_bet == 1:
 		enemy_hand_reference.bet_bullet()
