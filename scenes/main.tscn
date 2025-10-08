@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cnrxwm0ehctws"]
+[gd_scene load_steps=45 format=4 uid="uid://cnrxwm0ehctws"]
 
 [ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://player/hand.gd" id="2_jkv2x"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://4qoeebth8n4f" path="res://assets/ficha de vida (1).png" id="31_tel4y"]
 [ext_resource type="Texture2D" uid="uid://d0a3s34csgu7d" path="res://assets/blood_falling/morte1.png" id="32_cjqg0"]
 [ext_resource type="Texture2D" uid="uid://ceftfjc5cwvlm" path="res://assets/arma jogo de roberto.png" id="32_vchkt"]
+[ext_resource type="AudioStream" uid="uid://ctqp3a6vt3bw1" path="res://sfx/sounds/empty_click.mp3" id="33_c6pm6"]
 [ext_resource type="Texture2D" uid="uid://deard4mw205mg" path="res://assets/tambor_g7.png" id="33_pibwh"]
 [ext_resource type="Texture2D" uid="uid://cir6jcniegsn" path="res://assets/blood_falling/morte2.png" id="33_vchkt"]
 [ext_resource type="Texture2D" uid="uid://wca57bm1kryc" path="res://assets/tambor_g7-6.png" id="34_c6pm6"]
@@ -316,8 +317,8 @@ offset_bottom = 595.0
 text = "Jogar Novamente"
 
 [node name="SpriteReiniciar" type="Sprite2D" parent="PauseUI/playAgain"]
-position = Vector2(181.50002, 61.500004)
-scale = Vector2(0.8075223, 0.6243652)
+position = Vector2(181.5, 61.5)
+scale = Vector2(0.807522, 0.624365)
 texture = ExtResource("29_qkpxi")
 
 [node name="returnToMenu" type="Button" parent="PauseUI"]
@@ -328,8 +329,8 @@ offset_right = 1167.0
 offset_bottom = 761.0
 
 [node name="SpriteLeave" type="Sprite2D" parent="PauseUI/returnToMenu"]
-position = Vector2(182, 61.000015)
-scale = Vector2(0.8030973, 0.6091371)
+position = Vector2(182, 61)
+scale = Vector2(0.803097, 0.609137)
 texture = ExtResource("29_tel4y")
 
 [node name="debugUI" type="Control" parent="PauseUI"]
@@ -450,10 +451,10 @@ scale = Vector2(0.12, 0.106)
 texture = ExtResource("31_tel4y")
 
 [node name="Sprite2D" type="Sprite2D" parent="HUD"]
-position = Vector2(939.99994, 683)
-rotation = -0.34906584
+position = Vector2(940, 683)
+rotation = -0.349066
 scale = Vector2(0.3, 0.3)
-skew = 0.17453292
+skew = 0.174533
 texture = ExtResource("32_vchkt")
 
 [node name="bloodFalling" type="AnimatedSprite2D" parent="."]
@@ -470,6 +471,9 @@ animation = &"blood_falling"
 stream = SubResource("AudioStreamMP3_vchkt")
 volume_db = 24.0
 
+[node name="empty_chamber_click" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("33_c6pm6")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_left = -44.0
@@ -478,7 +482,7 @@ offset_right = 1972.0
 offset_bottom = 1135.0
 color = Color(0, 0, 0, 1)
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="sfx"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(934, 620)
 rotation = 0.102454
