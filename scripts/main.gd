@@ -21,7 +21,8 @@ var initial
 @onready var enemy_life := $'HUD/enemyLife'
 @onready var player_life := $'HUD/playerLife'
 @onready var blood_falling := $bloodFalling
-@onready var bullet_sound := $zuadaDeBala
+@onready var bullet_sound := $loaded_chamber_click
+@onready var revolver_click := $empty_chamber_click
 
 func _ready() -> void:
 	min_bet = 1
@@ -78,7 +79,16 @@ func pass_bullets(current_player):
 	for i in range(bullets_in_game_num):
 		var bullet = bullets_in_game[0]
 		current_player.recive_bullet(bullet)
-	bullets_in_game_num=0   
+	bullets_in_game_num=0
+
+func pass_bullets_draw():
+	for i in range(player_hand_reference.bullets_bet):
+		var bullet = bullets_in_game[0]
+		player_hand_reference.recive_bullet(bullet)
+	for i in range(enemy_hand_reference.bullets_bet):
+		var bullet = bullets_in_game[0]
+		enemy_hand_reference.recive_bullet(bullet)
+	bullets_in_game_num = 0
 	
 func check_victory():
 	if player_hand_reference.hand_sum > table_limit and not player_hand_reference.bust:
@@ -149,6 +159,8 @@ func check_victory():
 			enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
+			pass_bullets_draw()
+			reset_hands()
 			return
 
 	# --- Ambos estouraram (empate) ---
@@ -161,17 +173,14 @@ func check_victory():
 		enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
+		pass_bullets_draw()
+		reset_hands()
 		return
 
 func russian_roulette(target_player: bool = true):
 	var fire = randf() < (float(bullets_in_game_num) / 6.0)
 
 	if fire == true:
-		bullet_sound.play()
-		bullet_sound.play()
-		bullet_sound.play()
-		bullet_sound.play()
-		bullet_sound.play()
 		bullet_sound.play()
 		if target_player and player_hand_reference.life > 0:
 			player_hand_reference.life -= 1
@@ -189,9 +198,9 @@ func russian_roulette(target_player: bool = true):
 				#get_tree().paused = true
 				get_tree().change_scene_to_file("res://scenes/EndGame.tscn")
 				return
-	
-			reset_hands()
 
+			reset_hands()
+			
 		elif not target_player and enemy_hand_reference.life > 0:
 			enemy_hand_reference.life -= 1
 			enemy_text_reference.text = "[wave amp=50 freq=7] Deeler perdeu uma vida! [/wave]"
@@ -211,13 +220,14 @@ func russian_roulette(target_player: bool = true):
 			
 			reset_hands()
 	else:
+		revolver_click.play()
 		if target_player:
 			player_text_reference.text = "[wave amp=50 freq=7] Você sobreviveu! [/wave]"
 		else:
 			enemy_text_reference.text = "[wave amp=50 freq=7] Deeler sobreviveu! [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		reset_hands()
-		
+
 func enemy_turn():
 	if enemy_hand_reference.can_bet == 1:
 		enemy_hand_reference.bet_bullet()
@@ -229,58 +239,36 @@ func enemy_turn():
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
 			switch_turn()
-			
-		elif(player_hand_reference.stand):
-			if(player_hand_reference.hand_sum<enemy_hand_reference.hand_sum):
-				enemy_hand_reference.stand=1
-				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+		elif(not player_hand_reference.stand):
+			if enemy_hand_reference.hand_sum < 16:
+				animation.play("pede_carta")
 				await get_tree().create_timer(1.5).timeout
-				enemy_text_reference.text = ""
+				animation.play("idle")
+				deck_reference.draw_card()
 				switch_turn()
-				
-			elif(player_hand_reference.hand_sum >= enemy_hand_reference.hand_sum and not( enemy_hand_reference.hand_sum ==21)):
-				var count=0
-				for i in range(deck_reference.deck.size()):
-					if (enemy_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
-						count+=1
-				if count> 2*(deck_reference.deck.size()/3):
-						animation.play("pede_carta")
-						await get_tree().create_timer(1.5).timeout
-						animation.play("idle")
-						deck_reference.draw_card()
-				else:
-					enemy_hand_reference.stand=1
-					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
-					await get_tree().create_timer(1.5).timeout
-					enemy_text_reference.text = ""
-					switch_turn()
-		else:
-			var count=0
-			for i in range(deck_reference.deck.size()):
-				if (player_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
-					count+=1
-			if count< 2*(deck_reference.deck.size()/3) and enemy_hand_reference.hand_sum>player_hand_reference.hand_sum:
-				enemy_hand_reference.stand=1
-				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+			elif enemy_hand_reference.hand_sum < player_hand_reference.hand_sum:
+				animation.play("pede_carta")
 				await get_tree().create_timer(1.5).timeout
-				enemy_text_reference.text = ""
+				animation.play("idle")
+				deck_reference.draw_card()
 				switch_turn()
 			else:
-				count=0
-				for i in range(deck_reference.deck.size()):
-					if (enemy_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
-						count+=1
-				if count> 2*(deck_reference.deck.size()/3):
-						animation.play("pede_carta")
-						await get_tree().create_timer(1.5).timeout
-						animation.play("idle")
-						deck_reference.draw_card()
-				else: 
-					enemy_hand_reference.stand=1
-					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
-					await get_tree().create_timer(1.5).timeout
-					enemy_text_reference.text = ""
-					switch_turn()
+				enemy_hand_reference.stand= 1
+				await get_tree().create_timer(1.5).timeout
+				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+				await get_tree().create_timer(1.5).timeout
+				enemy_text_reference.text = ""
+				switch_turn()
+		else:
+			if enemy_hand_reference.hand_sum >= player_hand_reference.hand_sum:
+				enemy_hand_reference.stand = 1
+				switch_turn()
+			else:
+				animation.play("pede_carta")
+				await get_tree().create_timer(1.5).timeout
+				animation.play("idle")
+				deck_reference.draw_card()
+				switch_turn()
 
 func reset_hands():
 	deck_reference.deck = ["1_1","1_2","1_3","1_4","1_5","1_6","1_7",
@@ -387,3 +375,4 @@ func _on_set_hp_pressed():
 	player_hand_reference.life = 1
 func _on_set_deeler_hp_pressed():
 	enemy_hand_reference.life = 1
+	
