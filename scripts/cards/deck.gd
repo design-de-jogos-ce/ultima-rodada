@@ -71,7 +71,7 @@ func draw_card():
 		new_card.owner_reference = hand_reference
 		new_card.player = 1
 		hand_reference.add_card_to_hand(new_card, CARD_DRAW_SPEED)
-	deeler_reference.switch_turn()
+		deeler_reference.switch_turn()
 
 
 func reset_deck():

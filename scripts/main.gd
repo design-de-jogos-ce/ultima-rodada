@@ -22,6 +22,7 @@ var initial
 @onready var player_life := $'HUD/playerLife'
 @onready var blood_falling := $bloodFalling
 @onready var bullet_sound := $zuadaDeBala
+@onready var revolver_click := $empty_chamber_click
 
 func _ready() -> void:
 	min_bet = 1
@@ -81,7 +82,16 @@ func pass_bullets(current_player):
 	for i in range(bullets_in_game_num):
 		var bullet = bullets_in_game[0]
 		current_player.recive_bullet(bullet)
-	bullets_in_game_num=0   
+	bullets_in_game_num=0
+
+func pass_bullets_draw():
+	for i in range(player_hand_reference.bullets_bet):
+		var bullet = bullets_in_game[0]
+		player_hand_reference.recive_bullet(bullet)
+	for i in range(enemy_hand_reference.bullets_bet):
+		var bullet = bullets_in_game[0]
+		enemy_hand_reference.recive_bullet(bullet)
+	bullets_in_game_num = 0
 	
 func check_victory():
 
@@ -153,6 +163,8 @@ func check_victory():
 			enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
+			pass_bullets_draw()
+			reset_hands()
 			return
 
 	# --- Ambos estouraram (empate) ---
@@ -165,6 +177,8 @@ func check_victory():
 		enemy_text_reference.text = "[wave amp=50 freq=7] Empate [/wave]"
 		await get_tree().create_timer(1.5).timeout
 		enemy_text_reference.text = ""
+		pass_bullets_draw()
+		reset_hands()
 		return
 
 func russian_roulette(target_player: bool = true):
@@ -202,9 +216,9 @@ func russian_roulette(target_player: bool = true):
 				#get_tree().paused = true
 				get_tree().change_scene_to_file("res://scenes/EndGame.tscn")
 				return
-	
-			reset_hands()
 
+			reset_hands()
+			
 		elif not target_player and enemy_hand_reference.life > 0:
 			enemy_hand_reference.life -= 1
 			enemy_text_reference.text = "[wave amp=50 freq=7] Deeler perdeu uma vida! [/wave]"
@@ -224,6 +238,7 @@ func russian_roulette(target_player: bool = true):
 			
 			reset_hands()
 	else:
+		revolver_click.play()
 		if target_player:
 			player_text_reference.text = "[wave amp=50 freq=7] Você sobreviveu! [/wave]"
 		else:
@@ -244,7 +259,6 @@ func enemy_turn():
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
 			switch_turn()
-			
 		elif(player_hand_reference.stand):
 			if(player_hand_reference.hand_sum<enemy_hand_reference.hand_sum):
 				enemy_hand_reference.stand=1
