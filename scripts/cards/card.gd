@@ -21,6 +21,7 @@ func _ready() -> void:
 	activated = 0
 	player=0
 	description_label.visible = false
+	power=0
 	get_parent().connect_card_signals(self)
 
 func _on_area_2d_mouse_entered() -> void:
@@ -33,7 +34,7 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if activated == 0 and player:
+		if activated == 0 and player and power != 0:
 			image_path = str("res://assets/"+image_name+"_black.png")
 			get_node("card-sprite").texture = load(image_path) 
 			activated = 1

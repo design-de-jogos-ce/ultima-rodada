@@ -191,11 +191,6 @@ func russian_roulette(target_player: bool = true):
 	$AnimatedSprite2D2.visible = false
 	if fire == true:
 		bullet_sound.play()
-		bullet_sound.play()
-		bullet_sound.play()
-		bullet_sound.play()
-		bullet_sound.play()
-		bullet_sound.play()
 		if target_player and player_hand_reference.life > 0:
 			player_hand_reference.life -= 1
 			player_text_reference.z_index = 10
