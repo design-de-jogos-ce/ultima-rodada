@@ -21,8 +21,8 @@ var initial
 @onready var enemy_life := $'HUD/enemyLife'
 @onready var player_life := $'HUD/playerLife'
 @onready var blood_falling := $bloodFalling
-@onready var bullet_sound := $loaded_chamber_click
-@onready var revolver_click := $empty_chamber_click
+@onready var bullet_sound := $'sfx/loaded_chamber_click'
+@onready var revolver_click := $'sfx/empty_chamber_click'
 
 func _ready() -> void:
 	min_bet = 1

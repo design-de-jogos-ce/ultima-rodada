@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=4 uid="uid://wulf0m8edyi5"]
 
 [ext_resource type="Script" uid="uid://8g2b3jpek85d" path="res://scripts/main_menu.gd" id="1_l6cm7"]
-[ext_resource type="Texture2D" uid="uid://dlqyw15tchv4m" path="res://assets/menu.svg" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://bklm3gpqx6xw4" path="res://assets/Menu_final.png" id="2_7b55j"]
 [ext_resource type="Texture2D" uid="uid://d0a3s34csgu7d" path="res://assets/blood_falling/morte1.png" id="3_7b55j"]
 [ext_resource type="Texture2D" uid="uid://cir6jcniegsn" path="res://assets/blood_falling/morte2.png" id="4_5pajh"]
 [ext_resource type="Texture2D" uid="uid://bta8do6tljjgq" path="res://assets/blood_falling/morte3.png" id="5_j7ex8"]
@@ -70,7 +70,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"blood_falling",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="mainMenu" type="Control"]
@@ -98,11 +98,12 @@ offset_bottom = 988.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_wu84c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(960.99994, 500.99997)
-scale = Vector2(0.72, 0.72)
-texture = ExtResource("2_ekxnf")
+position = Vector2(957.00006, 539.5)
+scale = Vector2(0.7232444, 0.5527664)
+texture = ExtResource("2_7b55j")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 707.0
 offset_top = 880.0
@@ -115,6 +116,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1079.0
 offset_top = 883.0
