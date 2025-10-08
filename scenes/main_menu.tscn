@@ -135,8 +135,8 @@ autoplay = true
 [node name="bloodFalling" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = 100
-position = Vector2(959.99994, 539.99994)
-scale = Vector2(0.71829396, 0.55987555)
+position = Vector2(960, 540)
+scale = Vector2(0.718294, 0.559876)
 sprite_frames = SubResource("SpriteFrames_1a85y")
 animation = &"blood_falling"
 

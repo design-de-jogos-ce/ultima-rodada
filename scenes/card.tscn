@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1t60m7ebnhjf"]
+[gd_scene load_steps=5 format=3 uid="uid://b1t60m7ebnhjf"]
 
 [ext_resource type="Script" uid="uid://b5xlujg40ox7g" path="res://scripts/cards/card.gd" id="1_rjlel"]
-[ext_resource type="Texture2D" uid="uid://dh8d4hfdiowhv" path="res://assets/1_1.png" id="2_6u4wf"]
+[ext_resource type="Texture2D" uid="uid://cafjc7pf77vv" path="res://assets/1_1.png" id="2_6u4wf"]
+[ext_resource type="Script" path="res://scenes/powers.gd" id="2_ktuci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
 size = Vector2(165.33337, 242.66675)
@@ -11,6 +12,10 @@ z_index = -2
 position = Vector2(1280, 747)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_rjlel")
+
+[node name="powers" type="Node2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+script = ExtResource("2_ktuci")
 
 [node name="card-sprite" type="Sprite2D" parent="."]
 z_index = -1
@@ -24,5 +29,14 @@ texture = ExtResource("2_6u4wf")
 position = Vector2(1.333252, 1.333374)
 shape = SubResource("RectangleShape2D_rjlel")
 
+[node name="description_label" type="Label" parent="."]
+visible = false
+offset_left = -81.42859
+offset_top = -121.42859
+offset_right = -41.42859
+offset_bottom = -98.42859
+theme_override_font_sizes/font_size = 25
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

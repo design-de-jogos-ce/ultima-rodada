@@ -33,7 +33,6 @@ func _ready() -> void:
 	hand_sum = 0
 	center_screen_x = get_viewport().size.x/2
 	hand_y_position =  ((get_viewport().size.y/3))+30 
-	
 
 func add_card_to_hand(card, speed):
 	if card not in player_hand:
@@ -44,17 +43,13 @@ func add_card_to_hand(card, speed):
 		animate_car_to_position(card,card.starter_position,speed)
 	hand_counter.text = str(hand_sum)
 	
-	
 func bet_bullet():
 	if bullets.size() == 0:
 		return
-	
 	var bet_amount = randi_range(1, bullets_num)
-	
 	for i in range(bet_amount):
 		if bullets.size() == 0:
 			break
-			
 		var random_index = randi() % bullets.size()
 		var bullet = bullets[random_index]
 		
@@ -124,6 +119,7 @@ func animate_car_to_position(card, new_position,speed):
 func remove_card_from_hand(card):
 	if card in player_hand:
 		player_hand.erase(card)
+		hand_sum -= card.card_value
 		update_hand_positions(DEFAULT_SPEED)
 
 func reset_hand():

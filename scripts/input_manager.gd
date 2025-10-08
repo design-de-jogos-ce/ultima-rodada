@@ -68,6 +68,7 @@ func raycast_at_cursor():
 				card_manager_reference.start_drag(card_found)
 				
 		elif result_collision_mask == COLLISION_MASK_DACK and deeler_reference.player_turn and not player_hand_reference.stand and deeler_reference.initial and not player_hand_reference.bust:
+			print("Puxando carta")
 			deck_reference.draw_card()
 			
 		elif result_collision_mask == COLLISION_MASK_BULLET:
