@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1t60m7ebnhjf"]
 
 [ext_resource type="Script" uid="uid://b5xlujg40ox7g" path="res://scripts/cards/card.gd" id="1_rjlel"]
-[ext_resource type="Texture2D" uid="uid://cafjc7pf77vv" path="res://assets/1_1.png" id="2_6u4wf"]
-[ext_resource type="Script" path="res://scenes/powers.gd" id="2_ktuci"]
+[ext_resource type="Texture2D" uid="uid://cws5im8qm8un5" path="res://assets/1_1.png" id="2_6u4wf"]
+[ext_resource type="Script" uid="uid://dh1f5krajo7cd" path="res://scenes/powers.gd" id="2_ktuci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
 size = Vector2(165.33337, 242.66675)
@@ -30,11 +30,10 @@ position = Vector2(1.333252, 1.333374)
 shape = SubResource("RectangleShape2D_rjlel")
 
 [node name="description_label" type="Label" parent="."]
-visible = false
-offset_left = -81.42859
-offset_top = -121.42859
-offset_right = -41.42859
-offset_bottom = -98.42859
+offset_left = -2.0980835e-05
+offset_top = -127.142876
+offset_right = 39.999977
+offset_bottom = -92.142876
 theme_override_font_sizes/font_size = 25
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

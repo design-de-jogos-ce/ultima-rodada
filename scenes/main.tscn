@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://cnrxwm0ehctws"]
+[gd_scene load_steps=46 format=4 uid="uid://cnrxwm0ehctws"]
 
 [ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://player/hand.gd" id="2_jkv2x"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dle21pluqrya7" path="res://scripts/cards/deck.gd" id="12_og1vs"]
 [ext_resource type="Texture2D" uid="uid://bu2wm770iir2h" path="res://assets/baralho.svg" id="13_2wyq8"]
 [ext_resource type="Script" uid="uid://0rbk8pr45wec" path="res://scripts/input_manager.gd" id="14_vxglm"]
+[ext_resource type="Script" uid="uid://l44iqf4r0oed" path="res://scenes/sprite_2d.gd" id="15_5he1u"]
 [ext_resource type="Texture2D" uid="uid://c3kvvqnscr2yb" path="res://assets/pede_carta_g23.png" id="20_yq6so"]
 [ext_resource type="Texture2D" uid="uid://b1mk3b0pab35g" path="res://assets/pede_carta_g24.png" id="21_fv21b"]
 [ext_resource type="Texture2D" uid="uid://cvsm7s7wwwpuk" path="res://assets/pede_carta_g30.png" id="22_tel4y"]
@@ -269,6 +270,7 @@ position = Vector2(30.3576, -82.9386)
 rotation = 0.934077
 scale = Vector2(0.6, 0.656)
 texture = ExtResource("13_2wyq8")
+script = ExtResource("15_5he1u")
 
 [node name="Area2D" type="Area2D" parent="deck"]
 position = Vector2(-100.175, -7.93743)
@@ -476,6 +478,7 @@ stream = ExtResource("33_c6pm6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
+z_index = 10
 offset_left = -44.0
 offset_top = -26.0
 offset_right = 1972.0
@@ -484,6 +487,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 10
 position = Vector2(934, 620)
 rotation = 0.102454
 scale = Vector2(1.4802, 1.4802)
