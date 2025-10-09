@@ -39,7 +39,7 @@ func _ready() -> void:
 	table_limit = 21
 	player_turn = 1
 	initial_bullets()
-	$tutorial.tutorial()
+	$tutorial.aga()
 
 func initial_bullets():
 	for i in range(enemy_hand_reference.bullets_num):
@@ -305,8 +305,7 @@ func enemy_turn():
 				switch_turn()
 
 func reset_hands():
-	shuffle_sound.play()
-	await shuffle_sound.finished
+	
 	deck_reference.deck = ["1_1","1_2","1_3","1_4","1_5","1_6","1_7",
 			"1_8","1_9","1_10","1_11","1_12","1_13", "1_11","1_12","1_13",
 			"2_1","2_2","2_3","2_4","2_5","2_6","2_7",
@@ -347,10 +346,11 @@ func reset_hands():
 	player_text_reference.text = ""
 	enemy_text_reference.text = ""
 	initial = 1 if player_hand_reference.bullets_num == 0 else 0
-
+	table_limit = 21
 	# Resetar turno
 	player_turn = 1
-
+	shuffle_sound.play()
+	await shuffle_sound.finished
 func _on_play_again_pressed():
 	get_tree().paused = false
 	blood_falling.show()

@@ -38,3 +38,7 @@ func tutorial():
 	$Label8.visible = true
 	await get_tree().create_timer(5).timeout
 	$Label8.visible = false
+
+func aga():
+	await get_tree().create_timer(5).timeout
+	$aga.visible = false

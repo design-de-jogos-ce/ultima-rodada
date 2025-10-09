@@ -581,6 +581,15 @@ text = "Vomos jogar um jogo,
 sua vida contra a minha.
 "
 
+[node name="aga" type="Label" parent="tutorial"]
+z_index = 10
+offset_left = 1348.0
+offset_top = 2.0
+offset_right = 1918.0
+offset_bottom = 179.0
+theme_override_font_sizes/font_size = 41
+text = "Aperte (H) para ver o tutorial"
+
 [node name="Label2" type="Label" parent="tutorial"]
 visible = false
 z_index = 10
