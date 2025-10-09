@@ -123,6 +123,7 @@ func remove_card_from_hand(card):
 		player_hand.erase(card)
 		hand_sum -= card.card_value
 		update_hand_positions(DEFAULT_SPEED)
+		$"../HUD/enemy_counter".text = str(hand_sum)
 
 func reset_hand():
 	hand_sum = 0
