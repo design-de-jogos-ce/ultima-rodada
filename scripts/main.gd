@@ -250,6 +250,8 @@ func russian_roulette(target_player: bool = true):
 		reset_hands()
 	
 func enemy_turn():
+	if player_hand_reference.bust:
+		return
 	if enemy_hand_reference.can_bet == 1:
 		enemy_hand_reference.bet_bullet()
 	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
@@ -260,12 +262,12 @@ func enemy_turn():
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
 			switch_turn()
-		elif(not player_hand_reference.stand):
-			if enemy_hand_reference.hand_sum < 16:
-				animation.play("pede_carta")
+		elif(player_hand_reference.stand):
+			if(player_hand_reference.hand_sum<enemy_hand_reference.hand_sum):
+				enemy_hand_reference.stand=1
+				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
 				await get_tree().create_timer(1.5).timeout
-				animation.play("idle")
-				deck_reference.draw_card()
+				enemy_text_reference.text = ""
 				switch_turn()
 				
 			elif(player_hand_reference.hand_sum >= enemy_hand_reference.hand_sum and not( enemy_hand_reference.hand_sum ==table_limit)):
