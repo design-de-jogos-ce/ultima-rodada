@@ -24,6 +24,9 @@ var bullets : Array = []
 var bullets_num : int = 3
 
 
+func _process(delta: float) -> void:
+	pass
+	
 func _ready() -> void:
 	can_bet = 1
 	bullets_bet = 0
@@ -39,16 +42,17 @@ func _ready() -> void:
 	hand_sum = 0
 	center_screen_x = get_viewport().size.x/2
 	hand_y_position =  (5*(get_viewport().size.y/6)) + 30
+	
 
 func add_card_to_hand(card, speed):
 	if card not in player_hand:
 		if(card.card_value == 11):
-			if hand_sum+11>21:
+			if hand_sum+11>$"..".table_limit:
 				card.card_value = 1
 		player_hand.insert(0,card)
 		hand_sum += card.card_value
-		
 		update_hand_positions(speed)
+		
 	else:
 		animate_car_to_position(card,card.starter_position,speed)
 	hand_counter.text = str(hand_sum)
@@ -108,6 +112,10 @@ func update_hand_positions(speed):
 		card.starter_position = new_position
 		animate_car_to_position(card, new_position, speed)
 
+func att_sum():
+	hand_counter.text = str(hand_sum)
+	$"../HUD/hand_counter".text= str(hand_sum)
+	$"../HUD/enemy_counter".text = str($"../enemy_hand".hand_sum)
 	
 func calculate_hand_position(i):
 	var total_width = (player_hand.size() - 1) * CARD_WIDTH

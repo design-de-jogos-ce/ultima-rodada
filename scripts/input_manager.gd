@@ -30,8 +30,6 @@ func _input(event) -> void:
 			return
 	
 	if not get_tree().paused:
-		if event.is_action_pressed("dobra_aposta") and deeler_reference.initial and deeler_reference.player_turn and not player_hand_reference.double_down:
-			player_hand_reference._double_down()
 		
 		if event.is_action_pressed("passa_vez") and deeler_reference.initial and deeler_reference.player_turn and not player_hand_reference.double_down:
 			player_hand_reference.stand = 1
@@ -43,8 +41,6 @@ func _input(event) -> void:
 			
 			deeler_reference.switch_turn()
 		
-		if event.is_action_pressed("ui_accept") and deeler_reference.initial and deeler_reference.player_turn and not player_hand_reference.surrender:
-			player_hand_reference._surrender()
 
 		if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
 			if event.pressed:
