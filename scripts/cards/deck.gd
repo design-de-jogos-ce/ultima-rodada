@@ -4,6 +4,9 @@ const CARD_PATH = "res://scenes/card.tscn"
 const CARD_DRAW_SPEED = 0.2
 const PROB_HABILITY = 1# 50%
 
+@onready var card_sound := $'../sfx/card_into_hand'
+@onready var card_sound2 := $'../sfx/card_into_hand2'
+
 
 var deck = ["1_1","1_2","1_3","1_4","1_5","1_6","1_7",
 			"1_8","1_9","1_10","1_11","1_12","1_13", 
@@ -49,7 +52,11 @@ func draw_card():
 	new_card.image_path = str("res://assets/"+card_drawn+"_color.png")
 	new_card.image_name = card_drawn
 	$"../card-manager".add_child(new_card)
-
+	#var sound = randi_range(1, 2)
+	#if sound == 1:
+		#card_sound.play()
+	#else:
+	card_sound2.play()
 		
 	#	new_card.image_path = str("res://assets/"+card_drawn+"_black.png")
 	

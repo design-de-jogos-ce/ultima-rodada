@@ -21,8 +21,10 @@ var initial
 @onready var enemy_life := $'HUD/enemyLife'
 @onready var player_life := $'HUD/playerLife'
 @onready var blood_falling := $bloodFalling
+@onready var blink_animation := $blink_animation
 @onready var bullet_sound := $'sfx/loaded_chamber_click'
 @onready var revolver_click := $'sfx/empty_chamber_click'
+@onready var shuffle_sound := $'sfx/cards_shuffle'
 
 func _ready() -> void:
 	min_bet = 1
@@ -186,9 +188,15 @@ func russian_roulette(target_player: bool = true):
 	$ColorRect.visible = true
 	$AnimatedSprite2D2.visible = true
 	$AnimatedSprite2D2.play("default")
-	await get_tree().create_timer(0.8).timeout
+	await $AnimatedSprite2D2.animation_finished
+	#await get_tree().create_timer(0.8).timeout
 	$ColorRect.visible = false
 	$AnimatedSprite2D2.visible = false
+	
+	#blink_animation.visible = true
+	#blink_animation.play()
+	#await blink_animation.animation_finished
+	#blink_animation.visible = false
 	if fire == true:
 		bullet_sound.play()
 		if target_player and player_hand_reference.life > 0:
@@ -242,8 +250,6 @@ func russian_roulette(target_player: bool = true):
 		reset_hands()
 	
 func enemy_turn():
-	if player_hand_reference.bust:
-		return
 	if enemy_hand_reference.can_bet == 1:
 		enemy_hand_reference.bet_bullet()
 	if(not enemy_hand_reference.stand or not enemy_hand_reference.bust):
@@ -254,59 +260,40 @@ func enemy_turn():
 			await get_tree().create_timer(1.5).timeout
 			enemy_text_reference.text = ""
 			switch_turn()
-		elif(player_hand_reference.stand):
-			if(player_hand_reference.hand_sum<enemy_hand_reference.hand_sum):
-				enemy_hand_reference.stand=1
-				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+		elif(not player_hand_reference.stand):
+			if enemy_hand_reference.hand_sum < 16:
+				animation.play("pede_carta")
 				await get_tree().create_timer(1.5).timeout
-				enemy_text_reference.text = ""
+				animation.play("idle")
+				deck_reference.draw_card()
 				switch_turn()
-				
-			elif(player_hand_reference.hand_sum >= enemy_hand_reference.hand_sum and not( enemy_hand_reference.hand_sum ==21)):
-				var count=0
-				for i in range(deck_reference.deck.size()):
-					if (enemy_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
-						count+=1
-				if count> 2*(deck_reference.deck.size()/3):
-						animation.play("pede_carta")
-						await get_tree().create_timer(1.5).timeout
-						animation.play("idle")
-						deck_reference.draw_card()
-				else:
-					enemy_hand_reference.stand=1
-					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
-					await get_tree().create_timer(1.5).timeout
-					enemy_text_reference.text = ""
-					switch_turn()
-		else:
-			var count=0
-			for i in range(deck_reference.deck.size()):
-				if (player_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
-					count+=1
-			if count< 2*(deck_reference.deck.size()/3) and enemy_hand_reference.hand_sum>player_hand_reference.hand_sum:
-				enemy_hand_reference.stand=1
-				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+			elif enemy_hand_reference.hand_sum < player_hand_reference.hand_sum:
+				animation.play("pede_carta")
 				await get_tree().create_timer(1.5).timeout
-				enemy_text_reference.text = ""
+				animation.play("idle")
+				deck_reference.draw_card()
 				switch_turn()
 			else:
-				count=0
-				for i in range(deck_reference.deck.size()):
-					if (enemy_hand_reference.hand_sum+card_database_reference.CARDS[deck_reference.deck[i]][1])<=21:
-						count+=1
-				if count> 2*(deck_reference.deck.size()/3):
-						animation.play("pede_carta")
-						await get_tree().create_timer(1.5).timeout
-						animation.play("idle")
-						deck_reference.draw_card()
-				else: 
-					enemy_hand_reference.stand=1
-					enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
-					await get_tree().create_timer(1.5).timeout
-					enemy_text_reference.text = ""
-					switch_turn()
+				enemy_hand_reference.stand= 1
+				await get_tree().create_timer(1.5).timeout
+				enemy_text_reference.text = "[wave amp=50 freq=7] Passou [/wave]"
+				await get_tree().create_timer(1.5).timeout
+				enemy_text_reference.text = ""
+				switch_turn()
+		else:
+			if enemy_hand_reference.hand_sum >= player_hand_reference.hand_sum:
+				enemy_hand_reference.stand = 1
+				switch_turn()
+			else:
+				animation.play("pede_carta")
+				await get_tree().create_timer(1.5).timeout
+				animation.play("idle")
+				deck_reference.draw_card()
+				switch_turn()
 
 func reset_hands():
+	shuffle_sound.play()
+	await shuffle_sound.finished
 	deck_reference.deck = ["1_1","1_2","1_3","1_4","1_5","1_6","1_7",
 			"1_8","1_9","1_10","1_11","1_12","1_13", 
 			"2_1","2_2","2_3","2_4","2_5","2_6","2_7",

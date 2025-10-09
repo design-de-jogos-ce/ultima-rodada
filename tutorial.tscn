@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmmrhw4jn80q2"]
+
+[ext_resource type="Texture2D" uid="uid://baq5cfsuns2w8" path="res://assets/totorial.png" id="1_7n6eb"]
+
+[node name="Node" type="Node"]
+
+[node name="SpriteMain" type="Sprite2D" parent="."]
+position = Vector2(960.00006, 540.00006)
+scale = Vector2(0.99999994, 1.0000001)
+texture = ExtResource("1_7n6eb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -335.0
+offset_top = 348.0
+offset_right = -295.0
+offset_bottom = 388.0
+text = "Quantidade de balas na \"mão\" do player"

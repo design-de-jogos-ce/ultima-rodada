@@ -3,7 +3,8 @@ extends Control
 @onready var tela_vitoria := $"telaVitoria"
 @onready var tela_derrota := $"telaDerrota"
 @onready var blood_falling := $bloodFalling
-
+@onready var win_theme := $win_theme
+@onready var lose_theme := $lose_theme
 func _ready() -> void:
 	get_tree().paused = false
 	print(UiActions.game_status)
@@ -13,6 +14,10 @@ func process_endgame():
 	if UiActions.game_status == "victory!":
 		tela_vitoria.show()
 		tela_derrota.hide()
+		lose_theme.play()
+	else:
+		lose_theme.play()
+		
 
 func _on_reiniciar_partida_pressed():
 	blood_falling.show()

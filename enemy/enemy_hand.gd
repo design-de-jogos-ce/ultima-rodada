@@ -43,6 +43,8 @@ func add_card_to_hand(card, speed):
 		animate_car_to_position(card,card.starter_position,speed)
 	hand_counter.text = str(hand_sum)
 	
+
+	
 func bet_bullet():
 	if bullets.size() == 0:
 		return
