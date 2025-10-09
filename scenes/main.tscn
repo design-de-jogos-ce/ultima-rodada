@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://cnrxwm0ehctws"]
+[gd_scene load_steps=56 format=4 uid="uid://cnrxwm0ehctws"]
 
 [ext_resource type="Script" uid="uid://b8qxblb1c8uli" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://bgfl6bekgeyum" path="res://player/hand.gd" id="2_jkv2x"]
@@ -36,14 +36,15 @@
 [ext_resource type="Texture2D" uid="uid://cblyk5qus5b1" path="res://assets/blood_falling/morte7.png" id="38_j2jfr"]
 [ext_resource type="Texture2D" uid="uid://b8qonjjsn1018" path="res://assets/blood_falling/morte8.png" id="39_bjg73"]
 [ext_resource type="Texture2D" uid="uid://dhmbk6deqan3h" path="res://assets/blood_falling/morte9.png" id="40_bu4jf"]
-[ext_resource type="Texture2D" uid="uid://bjwno2eol325v" path="res://assets/animacao-pisca1.png" id="40_txyw0"]
+[ext_resource type="Texture2D" uid="uid://dqbaohj35yacv" path="res://assets/animacao-pisca1.png" id="40_txyw0"]
 [ext_resource type="Texture2D" uid="uid://ltrpjlxl8t0u" path="res://assets/blood_falling/morte10.png" id="41_o7ddy"]
-[ext_resource type="Texture2D" uid="uid://bslituums3tff" path="res://assets/animacao-pisca2.png" id="41_vc5cj"]
+[ext_resource type="Texture2D" uid="uid://bqtvg3a0bl2fu" path="res://assets/animacao-pisca2.png" id="41_vc5cj"]
 [ext_resource type="Texture2D" uid="uid://bbwhwbq3e4cur" path="res://assets/blood_falling/morte11.png" id="42_0loja"]
-[ext_resource type="Texture2D" uid="uid://doqyanbtbix3x" path="res://assets/animacao-pisca3.png" id="42_nvyfr"]
+[ext_resource type="Texture2D" uid="uid://d3156j6qctjb6" path="res://assets/animacao-pisca3.png" id="42_nvyfr"]
 [ext_resource type="Texture2D" uid="uid://bja3xxf8i24ew" path="res://assets/blood_falling/morte12.png" id="43_ids8r"]
 [ext_resource type="Texture2D" uid="uid://cda56nw0s2axp" path="res://assets/blood_falling/morte13.png" id="44_dnhof"]
-[ext_resource type="Texture2D" uid="uid://b1o8j1em3dxc8" path="res://assets/animacao-pisca-final.png" id="46_bu4jf"]
+[ext_resource type="Script" uid="uid://cejrtuqn23q74" path="res://scenes/turorial.gd" id="45_vchkt"]
+[ext_resource type="Texture2D" uid="uid://djcd8otdi725f" path="res://assets/animacao-pisca-final.png" id="46_bu4jf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vivmo"]
 animations = [{
@@ -564,6 +565,113 @@ position = Vector2(960, 539.5)
 scale = Vector2(2.04691, 2.20204)
 sprite_frames = SubResource("SpriteFrames_chjal")
 animation = &"blink"
+
+[node name="tutorial" type="Node2D" parent="."]
+script = ExtResource("45_vchkt")
+
+[node name="Label" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 198.0
+offset_top = 6.0
+offset_right = 721.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 41
+text = "Vomos jogar um jogo, 
+sua vida contra a minha.
+"
+
+[node name="Label2" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 1331.0
+offset_top = 518.0
+offset_right = 2444.0
+offset_bottom = 695.0
+theme_override_font_sizes/font_size = 41
+text = "Essas são as fichas de vida, 
+se ficar sem elas, você morre"
+
+[node name="Label3" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 4.0
+offset_top = 668.0
+offset_right = 672.0
+offset_bottom = 845.0
+theme_override_font_sizes/font_size = 41
+text = "Essas são nossas balas,
+clique nas suas para apostá-las
+quem ganhar a rodada leva tudo. "
+
+[node name="Label4" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 4.0
+offset_top = 668.0
+offset_right = 672.0
+offset_bottom = 845.0
+theme_override_font_sizes/font_size = 41
+text = "No inicio da rodada apostamos 
+quantas quisermos, mas pelo menos uma.
+A cada carta puxada
+pode adicionar mais uma "
+
+[node name="Label5" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 1078.0
+offset_top = 483.0
+offset_right = 1909.0
+offset_bottom = 660.0
+theme_override_font_sizes/font_size = 41
+text = "Puxe as cartas clicando no baralho.
+Não estoure e faça mais pontos do que eu"
+
+[node name="Label6" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 633.0
+offset_top = 514.0
+offset_right = 1464.0
+offset_bottom = 691.0
+theme_override_font_sizes/font_size = 41
+text = "A soma da mão está na sua direita"
+
+[node name="Label7" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 571.0
+offset_top = 482.0
+offset_right = 1421.0
+offset_bottom = 659.0
+theme_override_font_sizes/font_size = 41
+text = "No baralho tem cartas que você pode usar 
+para trapacear, não que isso ajude você"
+
+[node name="Label8" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 739.0
+offset_top = 462.0
+offset_right = 1230.0
+offset_bottom = 639.0
+theme_override_font_sizes/font_size = 41
+text = "Vamos ver quem faz 21
+faça seu melhor, quando
+quiser passar, aperte (N)"
+
+[node name="Label9" type="Label" parent="tutorial"]
+visible = false
+z_index = 10
+offset_left = 739.0
+offset_top = 462.0
+offset_right = 1230.0
+offset_bottom = 639.0
+theme_override_font_sizes/font_size = 41
+text = "Ao final de cada rodada
+o perdedor faz uma roleta
+russa com as balas apostadas"
 
 [connection signal="pressed" from="PauseUI/playAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="PauseUI/returnToMenu" to="." method="_on_return_to_menu_pressed"]

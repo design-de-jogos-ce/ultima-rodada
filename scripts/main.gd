@@ -39,6 +39,7 @@ func _ready() -> void:
 	table_limit = 21
 	player_turn = 1
 	initial_bullets()
+	$tutorial.tutorial()
 
 func initial_bullets():
 	for i in range(enemy_hand_reference.bullets_num):
